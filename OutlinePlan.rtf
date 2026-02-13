@@ -1,0 +1,188 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 LucidaGrande;
+\f3\fnil\fcharset0 LucidaGrande-Bold;\f4\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;\red24\green24\blue24;\red109\green109\blue109;\red52\green55\blue54;
+\red228\green234\blue244;\red23\green23\blue23;\red255\green255\blue255;\red240\green244\blue246;\red0\green0\blue0;
+}
+{\*\expandedcolortbl;;\cssrgb\c12157\c12157\c12157;\cssrgb\c50196\c50196\c50196;\cssrgb\c26667\c27843\c27451;
+\cssrgb\c91373\c93333\c96471;\cssrgb\c11765\c11765\c11765;\cssrgb\c100000\c100000\c100000;\cssrgb\c95294\c96471\c97255;\cssrgb\c0\c0\c0;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid1\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid101\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid102\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid201\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid301\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+\margl1440\margr1440\vieww8180\viewh12900\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 This document is to build a website for Brendan Scoggin\'92s professional growth and portfolio.\
+\
+\
+Initial instructions to point the Wordpress domain to the GitHub repository:
+\f1\b0 \
+\
+\pard\pardeftab720\sa320\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 To point a domain purchased through WordPress.com to a GitHub Pages repository, you essentially need to change who "handles" your traffic. Since WordPress.com is primarily a hosting platform, they don't provide a way to "pull" code from GitHub into their servers. Instead, you will host the code on GitHub and tell your domain to look there.\
+Here is the step-by-step process to bridge the two.\
+\pard\pardeftab720\partightenfactor0
+\cf3 \strokec3 \
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f0\b\fs36 \cf2 \strokec2 1. Prepare your GitHub Repository\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b0\fs24 \cf2 Before touching your domain settings, ensure your GitHub repository is ready to serve as a website.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In your GitHub repo, go to 
+\f0\b Settings
+\f1\b0  > 
+\f0\b Pages
+\f1\b0 .\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Under 
+\f0\b Build and deployment
+\f1\b0 , ensure your source is set to "Deploy from a branch" (usually the \cf4 \cb5 \strokec4 main\cf2 \cb1 \strokec2  or \cf4 \cb5 \strokec4 master\cf2 \cb1 \strokec2  branch).\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In the 
+\f0\b Custom domain
+\f1\b0  section, type in your domain (e.g., \cf4 \cb5 \strokec4 www.yourdomain.com\cf2 \cb1 \strokec2 ) and click 
+\f0\b Save
+\f1\b0 . This creates a \cf4 \cb5 \strokec4 CNAME\cf2 \cb1 \strokec2  file in your repository.\
+\pard\pardeftab720\partightenfactor0
+\cf3 \strokec3 \
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f0\b\fs36 \cf2 \strokec2 2. Configure DNS at WordPress.com\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b0\fs24 \cf2 Now you need to tell WordPress.com to send visitors to GitHub's servers.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls2\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Log in to your 
+\f0\b WordPress.com dashboard
+\f1\b0 .\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Go to 
+\f0\b Upgrades
+\f1\b0  > 
+\f0\b Domains
+\f1\b0 .\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Click on the domain you want to use and select 
+\f0\b DNS records
+\f1\b0  > 
+\f0\b Manage
+\f1\b0 .\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls2\ilvl0
+\f0\b \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Remove existing records:
+\f1\b0  If there are existing \cf4 \cb5 \strokec4 A\cf2 \cb1 \strokec2  or \cf4 \cb5 \strokec4 CNAME\cf2 \cb1 \strokec2  records pointing to WordPress hosting, delete them (you may want to screenshot them first just in case).\
+\ls2\ilvl0
+\f0\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Add GitHub's IP Addresses (A Records):
+\f1\b0  Create four 
+\f0\b A records
+\f1\b0  pointing to the following IP addresses:\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sa160\partightenfactor0
+\ls2\ilvl1\cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f2 \uc0\u9702 
+\f1 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 185.199.108.153\cf2 \cb1 \strokec2 \
+\ls2\ilvl1\cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f2 \uc0\u9702 
+\f1 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 185.199.109.153\cf2 \cb1 \strokec2 \
+\ls2\ilvl1\cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f2 \uc0\u9702 
+\f1 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 185.199.110.153\cf2 \cb1 \strokec2 \
+\ls2\ilvl1\cf4 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f2 \uc0\u9702 
+\f1 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 185.199.111.153\cf2 \cb1 \strokec2 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls2\ilvl0
+\f0\b \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Add the CNAME Record:
+\f1\b0  Create a 
+\f0\b CNAME record
+\f1\b0  for the \cf4 \cb5 \strokec4 www\cf2 \cb1 \strokec2  subdomain:\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sa160\partightenfactor0
+\ls2\ilvl1
+\f0\b \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f3 \uc0\u9702 
+\f0 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Type:
+\f1\b0  \cf4 \cb5 \strokec4 CNAME\cf2 \cb1 \strokec2 \
+\ls2\ilvl1
+\f0\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f3 \uc0\u9702 
+\f0 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Name/Host:
+\f1\b0  \cf4 \cb5 \strokec4 www\cf2 \cb1 \strokec2 \
+\ls2\ilvl1
+\f0\b \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f3 \uc0\u9702 
+\f0 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Alias/Points to:
+\f1\b0  \cf4 \cb5 \strokec4 [your-username].github.io\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf3 \strokec3 \
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f0\b\fs36 \cf2 \strokec2 3. Verify and Secure (HTTPS)\
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f1\b0\fs24 \cf2 DNS changes can take anywhere from a few minutes to 24 hours to "propagate" across the internet.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa160\partightenfactor0
+\ls3\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Back in your 
+\f0\b GitHub Repository Settings
+\f1\b0  > 
+\f0\b Pages
+\f1\b0 , look for the "DNS check" status.\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Once the DNS check passes, check the box for 
+\f0\b Enforce HTTPS
+\f1\b0 . This ensures your site is secure.\
+\pard\pardeftab720\partightenfactor0
+\cf3 \strokec3 \
+\pard\pardeftab720\sa160\partightenfactor0
+
+\f0\b\fs28 \cf2 \strokec2 Important Distinction\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0\fs24 \cf2 By doing this, you are using WordPress.com only as a 
+\f0\b Domain Registrar
+\f1\b0 . You will no longer be using the WordPress site builder or their hosting for this specific domain. All your website updates will now be managed by \cf4 \cb5 \strokec4 git commit\cf2 \cb1 \strokec2  and \cf4 \cb5 \strokec4 git push\cf2 \cb1 \strokec2  to your GitHub repository.\
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f0\b \cf2 I received a DNS error.\
+Ok new tactic.\
+I am moving the domain registrar to AWS on route53. \
+So far I have followed these instructions to get the change initiated:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa120\partightenfactor0
+\ls4\ilvl0
+\f4\b0\fs30 \cf6 \cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}1	\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 Click on brendantscoggin.com in your domains list\cb1 \
+\ls4\ilvl0\cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 Click the "Transfer" button on the right\cb1 \
+\ls4\ilvl0\cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 Toggle off "Transfer lock on"\cb1 \
+\ls4\ilvl0\cb7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 Click "Get authorization code"\
+\pard\tx720\pardeftab720\sa120\partightenfactor0
+
+\f0\b\fs24 \cf2 \cb1 \strokec2 \
+Transfer Authorization code:  
+\f4\b0\fs40 \cf0 \cb8 \strokec9 Qyxp-334-647-757
+\f0\b\fs24 \cf2 \cb1 \strokec2 \
+\pard\pardeftab720\sa320\partightenfactor0
+\cf2 \
+\pard\pardeftab720\sa320\partightenfactor0
+
+\f1\b0 \cf2 \
+}
