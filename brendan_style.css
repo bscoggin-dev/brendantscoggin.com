@@ -1,0 +1,341 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0ef675;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #111;
+}
+
+.landing {
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    /* Removed flex to stack image and nav vertically */
+}
+
+/* Image Styling */
+.image-container {
+    margin-bottom: 3rem;
+}
+
+.profile-photo {
+    width: 280px; /* Adjust size as needed */
+    height: auto;
+    max-width: 90vw;
+    /* Optional: uncomment the next line if you want a circular look */
+    /* border-radius: 50%; */
+}
+
+/* Navigation Links */
+.nav-links ul {
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 1.5rem 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #111;
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    text-transform: lowercase;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+    letter-spacing: 0.15rem;
+    color: #0070f3; /* Subtle blue highlight */
+}
+
+/* Page Content Styling */
+.page-content {
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Top Navigation */
+.top-nav {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 1000;
+}
+
+.top-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.top-nav a {
+    text-decoration: none;
+    color: #111;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    text-transform: lowercase;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    display: inline-block;
+}
+
+.top-nav a:hover {
+    opacity: 1;
+    letter-spacing: 0.15rem;
+    color: #0070f3;
+}
+
+.top-nav a.active {
+    opacity: 1;
+    color: #0070f3;
+    font-weight: 400;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header-nav {
+    margin-bottom: 3rem;
+}
+
+.back-link {
+    text-decoration: none;
+    color: #111;
+    font-size: 1rem;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.back-link:hover {
+    opacity: 1;
+    letter-spacing: 0.05rem;
+}
+
+.page-section {
+    text-align: left;
+}
+
+.page-section h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    text-transform: lowercase;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.skip-links {
+    font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    text-transform: lowercase;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: auto;
+    color: #111;
+}
+
+.skip-links a {
+    color: #0070f3;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.skip-links a:hover {
+    opacity: 0.7;
+    letter-spacing: 0.15rem;
+}
+
+.page-section h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.05rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    text-transform: lowercase;
+}
+
+.page-section h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.content-block {
+    line-height: 1.8;
+}
+
+.content-block p {
+    margin-bottom: 1.2rem;
+    opacity: 0.85;
+}
+
+.values-list,
+.doing-list,
+.skills-list {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.values-list li,
+.doing-list li,
+.skills-list li {
+    margin: 0.8rem 0;
+    padding-left: 1.5rem;
+    opacity: 0.85;
+    position: relative;
+}
+
+.values-list li:before,
+.doing-list li:before,
+.skills-list li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #0070f3;
+}
+
+.project-item,
+.experience-item,
+.musing-item {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.project-item:hover,
+.experience-item:hover,
+.musing-item:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px);
+}
+
+.project-item p,
+.experience-item p,
+.musing-item p {
+    opacity: 0.85;
+}
+
+.timeline-item {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    border-left: 3px solid #0070f3;
+}
+
+.timeline-item:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translateX(5px);
+}
+
+.timeline-item h3 {
+    color: #0070f3;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-item p {
+    opacity: 0.85;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .top-nav {
+        top: 1rem;
+        left: 1rem;
+    }
+
+    .top-nav a {
+        font-size: 0.85rem;
+    }
+
+    .page-content {
+        padding: 1.5rem;
+        max-width: 100%;
+        margin-top: 2rem;
+    }
+
+    .page-section h1 {
+        font-size: 2rem;
+    }
+
+    .page-section h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-nav {
+        top: 0.8rem;
+        left: 0.8rem;
+    }
+
+    .top-nav ul {
+        gap: 0.6rem;
+    }
+
+    .top-nav a {
+        font-size: 0.8rem;
+    }
+
+    .page-content {
+        padding: 1rem;
+        margin-top: 2rem;
+    }
+
+    .page-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .page-section h2 {
+        font-size: 1.1rem;
+    }
+
+    .project-item,
+    .experience-item,
+    .musing-item {
+        padding: 0.5rem;
+    }
+}
