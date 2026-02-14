@@ -70,6 +70,7 @@ body {
     width: 100%;
     max-width: 800px;
     padding: 2rem;
+    margin: 0 auto;
     animation: fadeIn 0.5s ease-in;
 }
 
