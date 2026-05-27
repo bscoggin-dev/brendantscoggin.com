@@ -1,0 +1,13 @@
+{
+  "name": "brendantscoggin.com",
+  "version": "1.0.0",
+  "description": "Personal website for Brendan Scoggin",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
