@@ -23,166 +23,207 @@
             <h1 id="vlog-title">This is the bvlogythingy...I hope you like it!</h1>
 
             <div class="content-block">
-                
-                <!-- Work in Progress Notice -->
-                <div class="project-item" id="wip-notice" style="border-left: 3px solid var(--accent-emerald); margin-bottom: 1.5rem; padding: 1.25rem;">
-                    <p style="margin: 0; font-size: 1rem; color: var(--text-primary); font-weight: 500;">
-                        🚧 <strong>Work in Progress</strong>
-                    </p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">
-                        This section is currently under active construction as a chronological weekly blog/vlog. The entries below are layout placeholders for review and will be completely updated by July 1, 2026.
-                    </p>
-                </div>
-                
-                <!-- WEEK 13: May 24, 2026 -->
-                <section class="timeline-item" id="entry-2026-05-24">
-                    <span class="vlog-date-tag">May 24, 2026</span>
-                    <h3>Sleek Cloud Pipeline Automation</h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam elementum, eros sit amet hendrerit facilisis, ex magna elementum lectus, at placerat metus dui nec ante. Mauris eu finibus erat. Phasellus ultrices eleifend diam vel dapibus.
-                    </p>
-                    <div class="vlog-media-mock" role="button" aria-label="Play Vlog for May 24, 2026">
-                        <div class="play-button"></div>
-                        <span class="vlog-media-label">🎥 Play Vlog Update (03:45)</span>
+
+                <section class="timeline-item" id="entry-2026-07-27">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 46a24 24 0 0 1 48 0"/><path d="M32 46 46 26"/><circle cx="32" cy="46" r="3"/><path d="M14 40h6M50 40h-6M32 22v6"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">July 27, 2026</span>
+                            <h3>Checking whether Craigslist was worth wiring up</h3>
+                        </div>
                     </div>
                     <p>
-                        Sed at ante a lorem varius porta. Curabitur convallis, lacus ac bibendum pretium, dui magna feugiat nunc, id interdum nulla justo a ex. Nam sollicitudin erat eget elit tristique tempor.
+                        I have a job search tool that pulls listings from a few sources and scores them against my background. I wanted to add Craigslist to it, but before writing the integration I decided to find out whether there was anything on there worth pulling.
+                    </p>
+                    <p>
+                        I pulled 407 postings out of the Bay Area tech and management categories and read through what came back. Almost all of it was contract IT support, hourly work, and a fair amount of spam. There were zero postings at the level I am actually looking for.
+                    </p>
+                    <p>
+                        So I did not build the integration. I saved the scraping recipe in my notes in case that changes, since curl and the RSS feeds are both blocked and it needs a real browser to get anything.
+                    </p>
+                    <p>
+                        An afternoon of checking saved me about a week of building something I would not have used.
                     </p>
                 </section>
-                
-                <!-- WEEK 12: May 17, 2026 -->
-                <section class="timeline-item" id="entry-2026-05-17">
-                    <span class="vlog-date-tag">May 17, 2026</span>
-                    <h3>Experimenting with Local LLM Orchestration</h3>
-                    <p>
-                        Suspendisse convallis massa erat, a molestie nisl posuere eu. Ut sed eros imperdiet, aliquet leo at, convallis lectus. In sollicitudin tincidunt massa, at aliquam eros finibus non. Nullam finibus eros sed libero consequat tincidunt.
-                    </p>
-                    <p>
-                        Proin ultrices nulla ac congue pretium. Integer et hendrerit risus. Vivamus quis dictum nibh. Curabitur pellentesque lorem eget lectus egestas, non finibus sapien egestas.
-                    </p>
-                </section>
-                
-                <!-- WEEK 11: May 10, 2026 -->
-                <section class="timeline-item" id="entry-2026-05-10">
-                    <span class="vlog-date-tag">May 10, 2026</span>
-                    <h3>Refactoring Multi-Agent Communications</h3>
-                    <p>
-                        Nunc in lectus pulvinar, viverra tortor non, egestas ligula. Duis at metus id est pretium porttitor. Mauris ultrices, turpis in pellentesque aliquet, massa magna elementum justo, convallis tempus neque magna non nulla.
-                    </p>
-                    <div class="vlog-media-mock" role="button" aria-label="Play Vlog for May 10, 2026">
-                        <div class="play-button"></div>
-                        <span class="vlog-media-label">🎥 Play Vlog Update (04:12)</span>
+
+                <section class="timeline-item" id="entry-2026-07-24">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 52h40M18 52V40h28v12M24 40V30h16v10M30 30V20h4v10"/><path d="M8 56h48"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">July 24, 2026</span>
+                            <h3>The BigQuery outage that wasn't</h3>
+                        </div>
                     </div>
-                </section>
-                
-                <!-- WEEK 10: May 3, 2026 -->
-                <section class="timeline-item" id="entry-2026-05-03">
-                    <span class="vlog-date-tag">May 3, 2026</span>
-                    <h3>CCSF Telecommunications Lab Wrap-Up</h3>
                     <p>
-                        Curabitur a finibus turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum sed tellus in lectus efficitur euismod facilisis in elit. Maecenas tristique massa vel sem interdum imperdiet.
+                        All of my automation tools stopped working on Thursday morning. Every one of them threw the same error, saying it could not reach BigQuery.
+                    </p>
+                    <p>
+                        I checked the status page first and everything was green. Then I checked my credentials, re-authenticated, and ran it again. Still broken.
+                    </p>
+                    <p>
+                        It turned out the problem was Python. I had installed the gcloud CLI a few days earlier, and it brought Homebrew's Python 3.14 along with it as a dependency. That put a new <code>python3</code> ahead of mine on the PATH, so all of my tools were running under an interpreter that did not have any of their packages. The BigQuery library was just the first missing thing they hit, so that is the error I saw.
+                    </p>
+                    <p>
+                        The fix was one line in my <code>.zshrc</code>, and it took most of the afternoon to find. The error named a specific service and that service was fine the entire time. Now I check what <code>python3</code> actually points at before I believe anything an error message tells me about a service being down.
                     </p>
                 </section>
-                
-                <!-- WEEK 9: April 26, 2026 -->
-                <section class="timeline-item" id="entry-2026-04-26">
-                    <span class="vlog-date-tag">April 26, 2026</span>
-                    <h3>Deploying Domain-Agnostic Capacity Audits</h3>
-                    <p>
-                        Nullam eu sem scelerisque, facilisis leo eu, pretium leo. Duis eleifend arcu nisl, non hendrerit nibh vulputate nec. Phasellus quis eleifend leo, id placerat dolor. Curabitur sed arcu sodales, mollis ante sed, porttitor lectus.
-                    </p>
-                    <div class="vlog-media-mock" role="button" aria-label="Play Vlog for April 26, 2026">
-                        <div class="play-button"></div>
-                        <span class="vlog-media-label">🎥 Play Vlog Update (05:20)</span>
+
+                <section class="timeline-item" id="entry-2026-07-24-research">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 54a22 22 0 0 0 0-44"/><path d="M32 46a14 14 0 0 0 0-28"/><path d="M32 38a6 6 0 0 0 0-12"/><path d="M32 10v44"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">July 24, 2026</span>
+                            <h3>Running the same research twice</h3>
+                        </div>
                     </div>
-                </section>
-                
-                <!-- WEEK 8: April 19, 2026 -->
-                <section class="timeline-item" id="entry-2026-04-19">
-                    <span class="vlog-date-tag">April 19, 2026</span>
-                    <h3>Vulnerabilities Deep Dive & Security Policies</h3>
                     <p>
-                        Praesent eget imperdiet justo, sit amet scelerisque neque. Phasellus tempor, erat eget tempus eleifend, mi dolor accumsan metus, nec lobortis elit urna quis dolor. Vivamus interdum purus nisl, nec fermentum metus placerat et.
+                        I spent a while looking into whether I should build a shared knowledge layer, so that my different agents could read from one common set of facts instead of each keeping their own notes.
+                    </p>
+                    <p>
+                        I ran a research pass on it and got back an answer I liked, which is usually a bad sign. When I went through the inputs again I found the run had been contaminated. I had included my own design notes in the source material, so the research was partly summarizing my own assumptions back to me.
+                    </p>
+                    <p>
+                        I cleared it out and ran it again from scratch. The second answer was that I should not build this right now. The format I was planning to standardize on is about six weeks old and still at version 0.1, and there is an existing tool that already covers most of what I wanted.
+                    </p>
+                    <p>
+                        So I parked it and wrote down what would need to be true for me to pick it back up. The second run also caught something I had wrong. I had assumed one of my tools loads its config file automatically and it does not, which explained a few things that had not been working the way I expected.
                     </p>
                 </section>
-                
-                <!-- WEEK 7: April 12, 2026 -->
-                <section class="timeline-item" id="entry-2026-04-12">
-                    <span class="vlog-date-tag">April 12, 2026</span>
-                    <h3>AWS Cloud Architecture Scaling</h3>
-                    <p>
-                        Quisque sed metus egestas, hendrerit ipsum nec, scelerisque leo. Donec sodales interdum purus non egestas. Pellentesque aliquet ex nec metus tempus tempor. Fusce facilisis diam diam, et tristique metus facilisis ut.
-                    </p>
-                    <div class="vlog-media-mock" role="button" aria-label="Play Vlog for April 12, 2026">
-                        <div class="play-button"></div>
-                        <span class="vlog-media-label">🎥 Play Vlog Update (02:50)</span>
+
+                <section class="timeline-item" id="entry-2026-07-23">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 8 52 32 32 56 12 32Z"/><path d="M32 18 44 32 32 46 20 32Z"/><path d="M12 32h40M32 8v48"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">July 23, 2026</span>
+                            <h3>Getting the tool to write things down</h3>
+                        </div>
                     </div>
-                </section>
-                
-                <!-- WEEK 6: April 5, 2026 -->
-                <section class="timeline-item" id="entry-2026-04-05">
-                    <span class="vlog-date-tag">April 5, 2026</span>
-                    <h3>Routing Tables & Logic Networks</h3>
                     <p>
-                        Nullam rhoncus eleifend nulla, et ultrices diam convallis nec. Sed ac turpis at sem mollis eleifend. Aliquam nec accumsan eros. Phasellus sollicitudin lorem id imperdiet varius. Proin sit amet nulla a lacus eleifend posuere.
+                        I built a small tool that reads my contact list against job descriptions and tells me who is worth reaching out to. It worked, but I noticed I was still copying the results into a spreadsheet by hand afterward.
+                    </p>
+                    <p>
+                        That hand-copying was the step that always broke. I would run the tool, get a good list, get busy, and never log any of it. A week later I would have no record of who I had already contacted or what I had asked them.
+                    </p>
+                    <p>
+                        So I moved the logging into the tool. Now when I approve a contact it writes the row to the Contacts tab itself, including the notes and the follow-up date. The spreadsheet is still the thing I look at, I just stopped being the one typing into it.
                     </p>
                 </section>
-                
-                <!-- WEEK 5: March 29, 2026 -->
-                <section class="timeline-item" id="entry-2026-03-29">
-                    <span class="vlog-date-tag">March 29, 2026</span>
-                    <h3>Analyzing Systems Friction Points</h3>
-                    <p>
-                        Morbi eu diam egestas, dictum massa sed, pulvinar arcu. Sed eu diam vitae sapien feugiat bibendum at et leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    </p>
-                    <div class="vlog-media-mock" role="button" aria-label="Play Vlog for March 29, 2026">
-                        <div class="play-button"></div>
-                        <span class="vlog-media-label">🎥 Play Vlog Update (03:15)</span>
+
+                <section class="timeline-item" id="entry-2026-07-22">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 8 52 16v16c0 12-9 20-20 24-11-4-20-12-20-24V16Z"/><path d="M32 20v24M22 30h20"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">July 22, 2026</span>
+                            <h3>Hardening a payments platform before it touches real money</h3>
+                        </div>
                     </div>
-                </section>
-                
-                <!-- WEEK 4: March 22, 2026 -->
-                <section class="timeline-item" id="entry-2026-03-22">
-                    <span class="vlog-date-tag">March 22, 2026</span>
-                    <h3>Building Automated Data Ingest Protocols</h3>
                     <p>
-                        Pellentesque ut diam id urna lobortis sollicitudin. Maecenas a neque ut diam egestas efficitur. Integer in facilisis diam. Aliquam porta diam vel congue lobortis. In vel elit feugiat, pharetra lorem ac, bibendum lorem.
+                        I have been building a booking and payments platform for a consulting client, a farm tour operator down in the Santa Cruz mountains. They work in the cannabis space, which was new to me, so a good part of this engagement has been learning what their compliance situation actually requires before writing anything.
+                    </p>
+                    <p>
+                        This past week was the security pass before it goes anywhere near live. I encrypted the personal information at rest, added rate limiting on the public endpoints, and put logging on the booking funnel so we can see where people drop off. I also ran a backup and restore drill to confirm the restore actually worked.
+                    </p>
+                    <p>
+                        The one that bothered me most was in the admin two-factor setup. If someone already had 2FA turned on, the enrollment endpoint would still let them register a new secret over the top of the old one. Anyone who got into an active session could quietly swap the second factor for their own and lock the real owner out of their account. I blocked re-enrollment over an existing secret and added a test so it stays blocked.
                     </p>
                 </section>
-                
-                <!-- WEEK 3: March 15, 2026 -->
-                <section class="timeline-item" id="entry-2026-03-15">
-                    <span class="vlog-date-tag">March 15, 2026</span>
-                    <h3>Mark Rober Engineering Challenges</h3>
-                    <p>
-                        Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed sodales lorem ut interdum scelerisque. Fusce ac ex et felis pulvinar ultrices at ac est. Curabitur sed congue justo, ac porttitor nulla.
-                    </p>
-                    <div class="vlog-media-mock" role="button" aria-label="Play Vlog for March 15, 2026">
-                        <div class="play-button"></div>
-                        <span class="vlog-media-label">🎥 Play Vlog Update (04:40)</span>
+
+                <section class="timeline-item" id="entry-2026-07-21">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 54V26l8-8 8 8v28"/><path d="M38 54V26l8-8 8 8v28"/><path d="M6 54h52M26 40h12"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">July 21, 2026</span>
+                            <h3>Two Macs, one setup</h3>
+                        </div>
                     </div>
-                </section>
-                
-                <!-- WEEK 2: March 8, 2026 -->
-                <section class="timeline-item" id="entry-2026-03-08">
-                    <span class="vlog-date-tag">March 8, 2026</span>
-                    <h3>Network Topology Experiments</h3>
                     <p>
-                        Integer sodales scelerisque mi in maximus. Etiam consequat dolor eu congue ultrices. In non mi in est dictum feugiat nec et nibh. Praesent vel dictum ante, eu mollis quam. Etiam dictum justo in tristique accumsan.
+                        I work across two Macs, an Apple Silicon laptop and an older Intel desktop. For a long time I had been treating one as the primary and the other as a copy, which meant I was always slightly unsure which one had the current version of anything.
+                    </p>
+                    <p>
+                        I wrote up an architecture and a runbook for treating them as equals instead. The scheduled jobs all live on one machine so nothing runs twice, but the code, the notes, and the tooling are identical on both, and either one can pick up where the other left off. They talk to each other over Tailscale so it works from anywhere.
+                    </p>
+                    <p>
+                        The part I did not expect was how much of this turned out to be documentation rather than code. Most of the actual failures came from me not being sure which machine I was on.
                     </p>
                 </section>
-                
-                <!-- WEEK 1: March 1, 2026 -->
-                <section class="timeline-item" id="entry-2026-03-01">
-                    <span class="vlog-date-tag">March 1, 2026</span>
-                    <h3>Chronological vlog launch</h3>
-                    <p>
-                        Donec condimentum pretium magna eget imperdiet. Aliquam in hendrerit sem, in finibus leo. Sed lobortis dolor et imperdiet interdum. Praesent sollicitudin magna at pretium iaculis. Nunc sit amet lacus sit amet elit bibendum finibus.
-                    </p>
-                    <div class="vlog-media-mock" role="button" aria-label="Play Vlog for March 1, 2026">
-                        <div class="play-button"></div>
-                        <span class="vlog-media-label">🎥 Play Vlog Launch Video (05:00)</span>
+
+                <section class="timeline-item" id="entry-2026-07-20">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 34 8 50h48Z"/><path d="M32 30V10M20 32 12 16M44 32l8-16M12 40 4 34M52 40l8-6"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">July 20, 2026</span>
+                            <h3>The cleanup system paid for itself</h3>
+                        </div>
                     </div>
+                    <p>
+                        Back in June I built a small hygiene tool that audits my Downloads and Desktop folders and flags files by how stale they are. It is read only. It proposes things and I approve them, because I did not want something deleting files on its own.
+                    </p>
+                    <p>
+                        This month was its first real run. It found 42 stale items and I archived all of them. It also flagged a couple of files that had credentials sitting in them, which it does not touch, it just tells me they are there.
+                    </p>
+                    <p>
+                        It runs once a month on its own now, and it only emails me when there is actually something to look at. That last part matters more than it sounds. The version that emailed me every month no matter what is the version I would have started ignoring by October.
+                    </p>
+                </section>
+
+                <section class="timeline-item" id="entry-2026-07-20-ranking">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 54h40"/><path d="M18 54V22h6v32M30 54V32h6v22M42 54V40h6v14"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">July 20, 2026</span>
+                            <h3>A ranked list that does not hide anyone</h3>
+                        </div>
+                    </div>
+                    <p>
+                        The networking tool ranks my contacts by how likely they are to be able to help with a particular role. The obvious way to build that is to show the top ten and drop everyone else.
+                    </p>
+                    <p>
+                        I did not do that, because the ranking is a guess. It is built on job titles and companies from an export that is often out of date, and I have already been burned twice by acting on stale employer data. If the tool quietly hides someone, I never find out it was wrong about them.
+                    </p>
+                    <p>
+                        So it ranks everyone and it shows everyone, and the ranking only changes the order. It also gives me one contact brief per run instead of a list to work through, which keeps me from opening it, feeling overwhelmed, and closing it again.
+                    </p>
+                </section>
+
+                <section class="timeline-item" id="entry-2026-07-09">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 54V34a20 20 0 0 1 40 0v20"/><path d="M22 54V36a10 10 0 0 1 20 0v18"/><path d="M8 54h48M32 14V6"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">July 9, 2026</span>
+                            <h3>Presenting at the farm</h3>
+                        </div>
+                    </div>
+                    <p>
+                        I drove down to the client's farm and walked the owners through the proposal in person.
+                    </p>
+                    <p>
+                        The first version of the deck led with the data and the tooling, which is the part I find most interesting. I rewrote it before the meeting to lead with strategy and brand and what they would actually get out of the engagement, and moved the tooling to the back as the thing that makes the rest of it work. That version landed much better.
+                    </p>
+                    <p>
+                        I also demoed the booking system running against real seed data instead of showing screenshots of it. Being able to click through the thing in front of them was worth more than any slide I could have made.
+                    </p>
+                    <p>
+                        They are considering it and I left the deck with them. However it goes, the rewrite was the useful part. I had been presenting my work in the order I built it rather than the order they cared about.
+                    </p>
+                </section>
+
+                <section class="timeline-item" id="entry-2026-07-01">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M36 6 16 36h12l-4 22 24-32H36l4-20Z"/><path d="M8 20h8M48 44h8"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">July 1, 2026</span>
+                            <h3>When a vendor turns off the free tier</h3>
+                        </div>
+                    </div>
+                    <p>
+                        Google discontinued the free tier for the Gemini CLI, and a few of my tools started failing the same morning with an error about account eligibility.
+                    </p>
+                    <p>
+                        The direct API still worked, so the fix was to stop shelling out to the CLI and call the API over HTTP instead, with a retry and a flag to switch the CLI path back on if it ever returns. Then I went through the other pipelines that touch Gemini to work out which of them were affected. Most were already calling the API directly and were fine.
+                    </p>
+                    <p>
+                        The useful part was having a test I could run to answer that question instead of guessing at it. I had written it earlier for an unrelated reason and it happened to be exactly what I needed.
+                    </p>
                 </section>
 
             </div>
