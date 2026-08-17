@@ -6,165 +6,178 @@
     <title>Resume - Brendan Scoggin</title>
     <meta name="description" content="Resume of Brendan Scoggin: Senior Program Manager with 11 years at Google across Geo/Mapping imagery operations and Google Express e-commerce, now working in film and media production management.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="brendan_style.css">
     <style>
-        :root {
-            --ink: #1a1a2e;
-            --muted: #55566b;
-            --rule: #d9dae2;
-            --accent: hsl(187 74% 32%);
-            --bg: #ffffff;
-        }
-
         /* Disable fi/fl/ffi ligatures everywhere. Headless Chromium substitutes those
            letter pairs with U+FB01/FB02/FB03 at PDF layout time, and PDF text
            extractors (what ATS systems read) decode them back to those codepoints,
-           so "Certificate" extracts as "Certiﬁcate" and a keyword search misses it. */
+           so "Certificate" extracts as "Certiﬁcate" and a keyword search misses it.
+           The PDF is printed from this page, so this stays global. */
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
             font-variant-ligatures: none;
             font-feature-settings: "liga" 0, "clig" 0, "dlig" 0;
         }
 
-        body {
-            font-family: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
-            background: var(--bg);
-            color: var(--ink);
-            line-height: 1.55;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ---- site nav ---- */
-        .top-nav {
-            border-bottom: 1px solid var(--rule);
-            padding: 1rem 1.25rem;
-        }
-        .top-nav ul {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.25rem;
-            max-width: 52rem;
-            margin: 0 auto;
-            font-size: 0.95rem;
-        }
-        .top-nav a {
-            color: var(--muted);
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            padding-bottom: 2px;
-        }
-        .top-nav a:hover { color: var(--accent); }
-        .top-nav a.active { color: var(--ink); border-bottom-color: var(--accent); }
-        .nav-subtitle { font-size: 0.8em; color: var(--muted); }
-
-        /* ---- page ---- */
+        /* ---- page (screen: site design language) ---- */
         .resume {
             max-width: 52rem;
             margin: 0 auto;
-            padding: 2.5rem 1.25rem 4rem;
+            padding: 6.5rem 1.25rem 4rem;
         }
 
-        header.masthead { margin-bottom: 1.75rem; }
+        header.masthead { margin-bottom: 2rem; }
         header.masthead h1 {
-            font-size: 2.1rem;
+            font-family: 'Space Grotesk', var(--font-sans);
+            font-size: 2.4rem;
+            font-weight: 700;
             letter-spacing: -0.02em;
             line-height: 1.15;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-teal) 45%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .gradient-rule {
             height: 2px;
-            background: linear-gradient(90deg, var(--accent), rgba(26,26,46,0.15));
-            margin: 0.6rem 0 0.75rem;
+            background: linear-gradient(90deg, var(--accent-emerald), var(--accent-teal), transparent);
+            margin: 0.6rem 0 0.85rem;
         }
         .contact {
             font-size: 0.95rem;
-            color: var(--muted);
+            color: var(--text-muted);
             display: flex;
             flex-wrap: wrap;
             gap: 0.4rem 0.75rem;
         }
-        .contact a { color: var(--muted); text-decoration: none; }
-        .contact a:hover { color: var(--accent); text-decoration: underline; }
-        .contact .sep { color: var(--rule); }
+        .contact a { color: var(--text-muted); text-decoration: none; transition: var(--transition-smooth); }
+        .contact a:hover { color: var(--accent-emerald); }
+        .contact .sep { color: var(--border-color); }
 
-        .actions { margin-top: 1rem; }
+        .actions { margin-top: 1.1rem; }
         .actions a {
             display: inline-block;
             font-size: 0.9rem;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            border-radius: 3px;
-            padding: 0.4rem 0.85rem;
+            font-weight: 500;
+            color: var(--accent-emerald);
+            border: 1px solid var(--border-hover);
+            background: var(--accent-low-op);
+            border-radius: 10px;
+            padding: 0.45rem 1rem;
             text-decoration: none;
+            transition: var(--transition-smooth);
         }
-        .actions a:hover { background: var(--accent); color: #fff; }
+        .actions a:hover { background: var(--accent-emerald); border-color: var(--accent-emerald); color: #06281d; }
 
-        section.block { margin-top: 2rem; }
+        section.block {
+            margin-top: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem 1.75rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
         section.block > h2 {
+            font-family: 'Space Grotesk', var(--font-sans);
             font-size: 0.82rem;
-            letter-spacing: 0.14em;
+            font-weight: 700;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: var(--accent);
-            border-bottom: 1px solid var(--rule);
-            padding-bottom: 0.35rem;
-            margin-bottom: 0.9rem;
+            color: var(--accent-emerald);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.45rem;
+            margin-bottom: 1rem;
         }
 
-        .summary { font-size: 1rem; }
+        .summary { font-size: 1rem; color: var(--text-secondary); }
 
-        .skill-line { margin-bottom: 0.55rem; font-size: 0.95rem; }
-        .skill-line .cat { font-weight: 700; }
+        .skill-line { margin-bottom: 0.55rem; font-size: 0.95rem; color: var(--text-secondary); }
+        .skill-line .cat { font-weight: 600; color: var(--text-primary); }
 
-        .entry { margin-bottom: 1.15rem; }
+        .entry { margin-bottom: 1.35rem; }
         .entry:last-child { margin-bottom: 0; }
         .entry h3 {
             font-size: 1.02rem;
-            font-weight: 700;
+            font-weight: 600;
             line-height: 1.35;
+            color: var(--text-primary);
         }
-        .entry h3 .note { font-weight: 400; font-style: italic; color: var(--muted); }
+        .entry h3 .note { font-weight: 400; font-style: italic; color: var(--text-muted); }
         .entry .meta {
             font-size: 0.88rem;
-            color: var(--muted);
-            margin-bottom: 0.35rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
         }
         .entry ul { margin: 0 0 0 1.15rem; }
-        .entry li { margin-bottom: 0.28rem; font-size: 0.95rem; }
+        .entry li { margin-bottom: 0.3rem; font-size: 0.95rem; color: var(--text-secondary); }
 
         ul.plain { list-style: none; margin: 0; }
-        ul.plain li { margin-bottom: 0.45rem; font-size: 0.95rem; }
+        ul.plain li { margin-bottom: 0.45rem; font-size: 0.95rem; color: var(--text-secondary); }
 
-        .edu-item { margin-bottom: 0.6rem; font-size: 0.95rem; }
-        .edu-item .degree { font-weight: 700; }
+        .edu-item { margin-bottom: 0.6rem; font-size: 0.95rem; color: var(--text-secondary); }
+        .edu-item .degree { font-weight: 600; color: var(--text-primary); }
 
         footer.pagefoot {
-            margin-top: 3rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--rule);
+            margin-top: 2.5rem;
             font-size: 0.85rem;
-            color: var(--muted);
+            color: var(--text-muted);
         }
-        footer.pagefoot a { color: var(--accent); }
+        footer.pagefoot a { color: var(--accent-emerald); }
 
         @media (max-width: 640px) {
-            header.masthead h1 { font-size: 1.7rem; }
-            .resume { padding: 1.75rem 1rem 3rem; }
+            header.masthead h1 { font-size: 1.75rem; }
+            .resume { padding: 5.5rem 1rem 3rem; }
+            section.block { padding: 1.15rem 1.1rem; }
         }
 
+        /* ---- print: self-contained light rendering; the PDF is printed from
+           this page, so these rules are what keeps page and PDF from drifting. ---- */
         @media print {
             @page { margin: 0.5in; }
             .top-nav, .actions, footer.pagefoot { display: none; }
             /* rem units scale off :root, so shrink there — setting body alone
                would leave every rem-sized child at screen size. */
             html { font-size: 8.2pt; }
-            body { line-height: 1.32; }
+            body {
+                background: #ffffff !important;
+                background-image: none !important;
+                color: #1a1a2e;
+                font-family: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+                line-height: 1.32;
+            }
             .resume { max-width: none; padding: 0; }
             header.masthead { margin-bottom: 0.7rem; }
-            header.masthead h1 { font-size: 1.9rem; }
-            .gradient-rule { margin: 0.35rem 0 0.4rem; }
-            section.block { margin-top: 0.85rem; }
-            section.block > h2 { margin-bottom: 0.45rem; padding-bottom: 0.2rem; }
+            header.masthead h1 {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 1.9rem;
+                background: none;
+                -webkit-background-clip: initial;
+                -webkit-text-fill-color: #1a1a2e;
+                background-clip: initial;
+                color: #1a1a2e;
+            }
+            .gradient-rule { margin: 0.35rem 0 0.4rem; background: linear-gradient(90deg, hsl(187 74% 32%), rgba(26,26,46,0.15)); }
+            .contact, .contact a { color: #55566b; }
+            section.block {
+                margin-top: 0.85rem;
+                background: none;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+            section.block > h2 {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                color: hsl(187 74% 32%);
+                border-bottom: 1px solid #d9dae2;
+                margin-bottom: 0.45rem;
+                padding-bottom: 0.2rem;
+            }
+            .summary, .entry li, .skill-line, .edu-item, ul.plain li { color: #1a1a2e; }
+            .skill-line .cat, .entry h3, .edu-item .degree { color: #1a1a2e; }
+            .entry h3 .note, .entry .meta { color: #55566b; }
             .entry { margin-bottom: 0.6rem; page-break-inside: avoid; }
             .entry .meta { margin-bottom: 0.15rem; }
             .entry li { margin-bottom: 0.1rem; }
