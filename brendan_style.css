@@ -808,3 +808,101 @@ body {
         height: 44px;
     }
 }
+
+/* --- Home Page Contact Strip --- */
+/* A single slim glass strip beneath the name: location, email, LinkedIn,
+   separated by hairline dividers. Stacks into rows on small screens. */
+
+.contact-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.6rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 0.75rem 0.9rem;
+    box-shadow: var(--shadow-premium);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.contact-strip .item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0 1.2rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: var(--transition-smooth);
+}
+
+.contact-strip .item + .item {
+    border-left: 1px solid var(--border-color);
+}
+
+.contact-strip svg {
+    flex: 0 0 17px;
+    width: 17px;
+    height: 17px;
+    color: var(--accent-emerald);
+}
+
+.contact-strip a.item:hover {
+    color: var(--accent-emerald);
+}
+
+@media (max-width: 700px) {
+    .contact-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.85rem;
+        border-radius: 16px;
+        padding: 1.1rem 1.4rem;
+    }
+
+    .contact-strip .item {
+        padding: 0;
+    }
+
+    .contact-strip .item + .item {
+        border-left: none;
+    }
+}
+
+/* --- Photo figures (what-ive-done, what-im-doing) --- */
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.25rem 0 0.5rem;
+}
+
+.photo-grid figure, .photo-single figure { margin: 0; }
+
+.photo-grid img, .photo-single img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-premium);
+}
+
+.photo-grid figcaption, .photo-single figcaption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.45rem;
+    line-height: 1.4;
+}
+
+.photo-single { max-width: 30rem; margin: 1.25rem 0 0.5rem; }
+.photo-portrait { max-width: 19rem; }
+figcaption a { color: var(--accent-emerald); }
+
+@media (max-width: 640px) {
+    .photo-grid { grid-template-columns: 1fr; }
+}
