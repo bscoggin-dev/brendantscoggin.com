@@ -906,3 +906,50 @@ figcaption a { color: var(--accent-emerald); }
 @media (max-width: 640px) {
     .photo-grid { grid-template-columns: 1fr; }
 }
+
+/* --- bvlogythingy entry labels + setup diagrams --- */
+
+.vlog-label {
+    display: inline-block;
+    background: var(--bg-dark);
+    border: 1px solid var(--accent-teal);
+    color: var(--accent-teal);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 30px;
+    margin-left: 0.4rem;
+    margin-bottom: 0.5rem;
+    vertical-align: top;
+}
+
+.vlog-label.creative {
+    border-color: #38bdf8;
+    color: #38bdf8;
+}
+
+.flow-diagram {
+    margin: 1.5rem 0 0.5rem;
+    max-width: 44rem;
+}
+
+.flow-diagram svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    color: var(--accent-emerald);
+}
+
+.flow-diagram svg text {
+    fill: var(--text-secondary);
+    font-family: var(--font-sans);
+}
+
+.flow-diagram figcaption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.45rem;
+    line-height: 1.4;
+}
