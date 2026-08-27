@@ -15,10 +15,13 @@ const OUT = path.join(ROOT, '.verify-shots');
 
 const DEFAULT_PAGES = [
   'index.html',
+  'work.html',
   'who-i-am.html',
   'what-ive-done.html',
   'what-im-doing.html',
   'resume.html',
+  'tools/mac-maid/index.html',
+  'tools/judge-moody/index.html',
 ];
 
 const pages = process.argv.slice(2).length ? process.argv.slice(2) : DEFAULT_PAGES;
