@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
 
 /* --- Design Tokens --- */
 :root {
@@ -21,6 +21,11 @@
     
     /* Typography */
     --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+
+    /* Editorial vertical rhythm — roughly double the previous section spacing */
+    --space-section: clamp(6rem, 12vw, 11rem);
+    --space-block: clamp(2.5rem, 5vw, 4rem);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -952,4 +957,372 @@ figcaption a { color: var(--accent-emerald); }
     color: var(--text-muted);
     margin-top: 0.45rem;
     line-height: 1.4;
+}
+
+/* ============================================================
+   EDITORIAL HERO (index.html)
+   Ragged asymmetric display type, narrow body column offset right.
+   ============================================================ */
+
+.hero {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: var(--space-block);
+    row-gap: 2rem;
+    align-items: start;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-display {
+    grid-column: 1 / -1;
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 11vw, 8.5rem);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin: 0 0 var(--space-block) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-line + .hero-line {
+    margin-left: 0.85em;
+}
+
+.hero-asterisk {
+    color: var(--accent-emerald);
+    font-size: 0.5em;
+    vertical-align: super;
+    line-height: 1;
+}
+
+.hero-photo {
+    grid-column: 1;
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-premium);
+}
+
+.hero-copy {
+    grid-column: 2;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-body {
+    max-width: 34ch;
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.hero-footnote {
+    max-width: 34ch;
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 1.25rem 0 0 0;
+}
+
+.hero .contact-strip {
+    grid-column: 1 / -1;
+    margin-top: var(--space-block);
+}
+
+@media (max-width: 760px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+    .hero-display,
+    .hero-photo,
+    .hero-copy {
+        grid-column: 1;
+    }
+    .hero-line + .hero-line {
+        margin-left: 0.4em;
+    }
+    .hero-photo {
+        max-width: 100%;
+    }
+}
+
+/* ============================================================
+   WORK CARDS (index.html featured grid, work.html full grid)
+   ============================================================ */
+
+.work-section {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: var(--space-section) 2rem;
+}
+
+.work-eyebrow {
+    font-family: 'Space Grotesk', var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-emerald);
+    margin: 0 0 var(--space-block) 0;
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+/* The home page shows four cards on one row, so mac-maid sits directly beside
+   Judge Moody. work.html keeps two columns for its longer list. */
+.work-grid.is-featured {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.work-grid.is-featured .work-card {
+    padding: 1.75rem;
+}
+
+.work-grid.is-featured .work-card-title {
+    font-size: clamp(1.35rem, 1.9vw, 1.8rem);
+}
+
+@media (max-width: 1180px) {
+    .work-grid.is-featured {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+    .work-grid.is-featured {
+        grid-template-columns: 1fr;
+    }
+}
+
+.work-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 2.25rem;
+    box-shadow: var(--shadow-premium);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.work-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.03), transparent);
+    pointer-events: none;
+}
+
+.work-card:hover {
+    transform: translateY(-4px);
+    background-color: var(--bg-card-hover);
+    border-color: var(--border-hover);
+    box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.8);
+}
+
+
+.work-card-media,
+.work-card-emblem {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+    flex: none;
+}
+
+.work-card-media {
+    object-fit: cover;
+    display: block;
+}
+
+/* Cards without a photograph get a stroke-only art-deco emblem so every
+   card in the grid is the same shape. Uses currentColor, so it adapts to
+   both colour schemes for free. */
+.work-card-emblem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-low-op);
+    color: var(--accent-emerald);
+}
+
+.work-card-emblem svg {
+    width: 34%;
+    max-width: 92px;
+    height: auto;
+    opacity: 0.85;
+}
+
+.work-card-year {
+    display: block;
+    font-family: 'Space Grotesk', var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+}
+
+.work-card-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+    margin: 0 0 0.75rem 0;
+    transition: var(--transition-smooth);
+}
+
+.work-card:hover .work-card-title {
+    color: var(--accent-emerald);
+}
+
+.work-card-sub {
+    font-family: var(--font-sans);
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin: 0;
+    flex: 1 1 auto;
+}
+
+.work-more {
+    display: inline-block;
+    margin-top: var(--space-block);
+    font-family: 'Space Grotesk', var(--font-sans);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-emerald);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-hover);
+    padding-bottom: 0.25rem;
+    transition: var(--transition-smooth);
+}
+
+.work-more:hover {
+    color: var(--accent-teal);
+    border-bottom-color: var(--accent-teal);
+}
+
+@media (max-width: 760px) {
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
+    .work-card {
+        padding: 1.5rem;
+    }
+    .work-section {
+        padding: var(--space-section) 1.25rem;
+    }
+}
+
+/* ============================================================
+   WORKING LOG GRID (what-im-doing.html)
+   The same card language as .work-card, two per row, reading
+   left to right and then down. Entries keep all their content.
+   ============================================================ */
+
+.log-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+/* .timeline-item already carries the card surface (background, border,
+   16px radius, shadow, hover lift). These rules bring its typography and
+   spacing in line with .work-card. */
+.log-grid .timeline-item {
+    margin: 0;
+    height: 100%;
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.log-grid .entry-head {
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.log-grid .entry-head h3 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+}
+
+.log-grid .vlog-date-tag {
+    font-family: 'Space Grotesk', var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.log-grid .deco-emblem {
+    width: 44px;
+    height: 44px;
+}
+
+/* Media inside a half-width card: stack rather than squeeze. */
+.log-grid .photo-grid {
+    grid-template-columns: 1fr;
+}
+
+.log-grid .flow-diagram {
+    max-width: 100%;
+}
+
+.log-grid figure img,
+.log-grid .photo-single {
+    max-width: 100%;
+}
+
+@media (max-width: 900px) {
+    .log-grid {
+        grid-template-columns: 1fr;
+    }
+    .log-grid .timeline-item {
+        padding: 1.5rem;
+    }
+}
+
+/* The global `* { margin: 0 }` reset zeroes paragraph margins, so multi-paragraph
+   entries run together. Scoped to the log grid so no other page is affected. */
+.log-grid .timeline-item p + p {
+    margin-top: 0.9rem;
 }
