@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Judge Moody — a grader that tells you how strong its standard was</title>
+    <meta name="description" content="A portable LLM-as-judge subagent for Claude Code. It grades a finished artifact, and it declares which standard it actually graded against.">
+    <link rel="stylesheet" href="../tool.css">
+</head>
+<body class="theme-judge">
+    <header class="tool-header">
+        <div class="tool-wrap">
+            <a class="tool-wordmark" href="#top"><span class="tool-mark-sm"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 12v40M20 52h24"/><path d="M12 22h40"/><circle cx="32" cy="16" r="2"/><path d="M12 22 6 36a6 6 0 0 0 12 0Z"/><path d="M52 22 46 36a6 6 0 0 0 12 0Z"/></svg></span>JUDGE MOODY</a>
+            <nav class="tool-nav">
+                <a href="#verdict">Verdict</a>
+                <a href="#tiers">Tiers</a>
+                <a href="#gaps">Gaps</a>
+                <a href="#runs">How it runs</a>
+                <a href="https://github.com/bscoggin-dev/judge-moody" target="_blank" rel="noopener">GitHub &#8599;</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="tool-hero">
+            <div class="tool-wrap">
+                <span class="tool-mark"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 12v40M20 52h24"/><path d="M12 22h40"/><circle cx="32" cy="16" r="2"/><path d="M12 22 6 36a6 6 0 0 0 12 0Z"/><path d="M52 22 46 36a6 6 0 0 0 12 0Z"/></svg></span>
+                <p class="tool-eyebrow">A subagent for Claude Code</p>
+                <h1 class="tool-title">judge<br>moody</h1>
+                <p class="tool-lede">Hand it a finished thing and whatever standard exists. It returns pass, revise, or fail — and tells you how strong the standard it used actually was.</p>
+                <p class="tool-sub">A verdict grounded in a known-good example is not the same as one graded against criteria the judge invented. This one says which it was.</p>
+                <a class="tool-cta" href="https://github.com/bscoggin-dev/judge-moody" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+        </section>
+
+        <section class="tool-section" id="verdict">
+            <div class="tool-wrap">
+                <h2>The verdict</h2>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h3>Pass, revise, or fail</h3>
+                        <p>One of three, never a score out of ten. A number invites you to argue with the decimal instead of reading the gaps.</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Graded in a clean context</h3>
+                        <p>It runs fresh and never sees the conversation that produced the artifact, so it cannot be talked into liking something by the reasoning that made it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tool-section" id="tiers">
+            <div class="tool-wrap">
+                <h2>The tiers</h2>
+                <p>It resolves the strongest standard you actually supplied, and declares which one it used.</p>
+                <ul class="tool-tiers">
+                    <li><strong>Ideal</strong><span>A known-good example to grade against — the strongest basis</span></li>
+                    <li><strong>Rubric</strong><span>Explicit criteria you wrote down</span></li>
+                    <li><strong>Spec</strong><span>A written description the criteria get derived from</span></li>
+                    <li><strong>Inferred</strong><span>Nothing supplied — it invents criteria and says so</span></li>
+                </ul>
+                <p class="tool-note">Below the ideal tier it prints the criteria before the verdict, so you can reject the basis rather than the grade. An unreadable standard drops a tier and says so, instead of quietly downgrading.</p>
+            </div>
+        </section>
+
+        <section class="tool-section" id="gaps">
+            <div class="tool-wrap">
+                <h2>The gaps</h2>
+                <p>Gaps come back sorted blocking first, each with a concrete fix rather than an observation. "The introduction is weak" is not a gap; "the introduction never states what the document decides" is.</p>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h3>Blocking</h3>
+                        <p>The artifact does not do its job until this is fixed.</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Minor</h3>
+                        <p>Worth fixing, but the thing works without it. Kept separate so a long list of nits cannot masquerade as a failure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tool-section" id="runs">
+            <div class="tool-wrap">
+                <h2>How it runs</h2>
+                <p>Manual trigger only. No schedule, no hook, nothing in a pipeline — you invoke it when you want a second opinion, through the paired slash command that collects the artifact and the standard and dispatches without pre-judging either.</p>
+                <p>Read-only by construction. It can read, search, and list files, and it cannot run commands. A grader that can modify the thing it is grading is not a grader.</p>
+                <p class="tool-note">Deliberately out of scope: it carries no safety or policy dimension, and no efficiency or trajectory dimension. Permission modes enforce the first for real, and nothing in the stack captures the execution traces the second would need.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="tool-footer">
+        <div class="tool-wrap">
+            <p>Built by <a href="/">Brendan Scoggin</a>. Source on <a href="https://github.com/bscoggin-dev/judge-moody" target="_blank" rel="noopener">GitHub</a>.</p>
+        </div>
+    </footer>
+</body>
+</html>
