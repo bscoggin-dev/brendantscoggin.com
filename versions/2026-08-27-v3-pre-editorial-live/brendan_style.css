@@ -1,0 +1,955 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+
+/* --- Design Tokens --- */
+:root {
+    /* Color Palette */
+    --bg-dark: #090d16;
+    --bg-card: rgba(22, 28, 45, 0.6);
+    --bg-card-hover: rgba(30, 41, 59, 0.7);
+    --border-color: rgba(255, 255, 255, 0.06);
+    --border-hover: rgba(16, 185, 129, 0.3);
+    
+    /* Text Colors */
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    
+    /* Accents */
+    --accent-emerald: #10b981;
+    --accent-teal: #14b8a6;
+    --accent-low-op: rgba(16, 185, 129, 0.1);
+    
+    /* Typography */
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+}
+
+/* System Light Theme Override (Graceful Fallback) */
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-dark: #f8fafc;
+        --bg-card: rgba(255, 255, 255, 0.8);
+        --bg-card-hover: rgba(255, 255, 255, 0.95);
+        --border-color: rgba(0, 0, 0, 0.08);
+        --border-hover: rgba(16, 185, 129, 0.5);
+        
+        --text-primary: #0f172a;
+        --text-secondary: #334155;
+        --text-muted: #64748b;
+        
+        --accent-emerald: #059669;
+        --accent-teal: #0d9488;
+        --accent-low-op: rgba(5, 150, 105, 0.08);
+        --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* --- Base Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    /* Subtle premium radial glow in the corner for dark mode */
+    background-image: radial-gradient(circle at 80% 10%, rgba(16, 185, 129, 0.06) 0%, rgba(20, 184, 166, 0.02) 40%, transparent 100%);
+    background-attachment: fixed;
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* --- Layout Structure --- */
+
+/* Main Landing / Hero (index.html) */
+.landing {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 2rem 2rem 2rem; /* Give room for top header */
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 600px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-title {
+    font-family: 'Space Grotesk', var(--font-sans);
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+    display: inline-block;
+    
+    background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-teal) 45%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    /* Playful tilt flare */
+    transform: rotate(-1deg);
+    transform-origin: left center;
+}
+
+/* Profile Photo Container */
+.image-container {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.image-container::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, var(--accent-emerald), var(--accent-teal));
+    opacity: 0.25;
+    z-index: -1;
+    filter: blur(8px);
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-premium);
+    transition: var(--transition-smooth);
+    filter: grayscale(100%) contrast(1.05);
+}
+
+.profile-photo:hover {
+    transform: scale(1.03) rotate(1deg);
+    border-color: var(--accent-emerald);
+    filter: grayscale(100%) contrast(1.12) brightness(1.03);
+}
+
+/* --- NAVIGATION SYSTEMS --- */
+
+/* 1. Home Page Navigation (Horizontal at the Top) */
+.home-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2.5rem 3rem;
+    z-index: 1000;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.home-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.home-nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.05rem;
+    text-transform: lowercase;
+    transition: var(--transition-smooth);
+    padding: 0.4rem 0.8rem;
+    border-bottom: 2px solid transparent;
+}
+
+.home-nav a:hover {
+    color: var(--text-primary);
+    border-bottom-color: var(--accent-teal);
+}
+
+/* 2. Internal Pages Navigation (Desktop Sidebar, Mobile Sticky Header) */
+.top-nav {
+    position: fixed;
+    top: 3rem;
+    left: 3rem;
+    width: 220px;
+    z-index: 1000;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.top-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.top-nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 400;
+    letter-spacing: 0.05rem;
+    text-transform: lowercase;
+    transition: var(--transition-smooth);
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    border-left: 2px solid transparent;
+}
+
+.top-nav a:hover {
+    color: var(--text-primary);
+    border-left-color: var(--accent-teal);
+    padding-left: 1.1rem;
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.top-nav a.active {
+    color: var(--accent-emerald);
+    font-weight: 600;
+    border-left-color: var(--accent-emerald);
+    background-color: var(--bg-card);
+}
+
+/* --- Internal Page Content Layout --- */
+.page-content {
+    max-width: 900px;
+    margin-left: 300px; /* Offset for desktop sidebar navigation */
+    padding: 4rem 3rem;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.page-section h1, #vlog-title {
+    font-family: 'Space Grotesk', var(--font-sans);
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.02em;
+    position: relative;
+    display: inline-block;
+    
+    background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-teal) 45%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    /* Playful tilt flare */
+    transform: rotate(-1deg);
+    transform-origin: left center;
+}
+
+.page-section h1::after, #vlog-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 70px;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent-emerald), #38bdf8);
+}
+
+.page-section h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 3rem 0 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+/* Glassmorphism content block / Card base */
+.content-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.content-block p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.content-block blockquote {
+    border-left: 4px solid var(--accent-emerald);
+    padding-left: 1.5rem;
+    font-style: italic;
+    color: var(--text-primary);
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+}
+
+/* Portfolio, Experience, and Timeline Cards */
+.project-item,
+.experience-item,
+.timeline-item {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-premium);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-item::before,
+.experience-item::before,
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.03), transparent);
+    pointer-events: none;
+}
+
+.project-item:hover,
+.experience-item:hover,
+.timeline-item:hover {
+    transform: translateY(-4px);
+    background-color: var(--bg-card-hover);
+    border-color: var(--border-hover);
+    box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.8);
+}
+
+.project-item h3,
+.experience-item h3,
+.timeline-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+    transition: var(--transition-smooth);
+}
+
+.project-item:hover h3,
+.experience-item:hover h3,
+.timeline-item:hover h3 {
+    color: var(--accent-emerald);
+}
+
+.project-item p,
+.experience-item p,
+.timeline-item p {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+/* Custom list layout */
+.doing-list,
+.skills-list,
+.values-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.doing-list li,
+.skills-list li,
+.values-list li {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1rem 1.25rem 1rem 2.5rem;
+    font-size: 0.95rem;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.doing-list li:hover,
+.skills-list li:hover,
+.values-list li:hover {
+    border-color: var(--accent-teal);
+    background-color: var(--bg-card-hover);
+    transform: translateX(4px);
+}
+
+.doing-list li::before,
+.skills-list li::before,
+.values-list li::before {
+    content: "→";
+    position: absolute;
+    left: 1rem;
+    color: var(--accent-emerald);
+    font-weight: 700;
+}
+
+/* Bottom Resume/LinkedIn Skip link on Page footers */
+.skip-links {
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.skip-links a {
+    color: var(--accent-emerald);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    border-bottom: 1px solid transparent;
+}
+
+.skip-links a:hover {
+    color: var(--accent-teal);
+    border-bottom-color: var(--accent-teal);
+}
+
+/* Focus Management */
+:focus-visible {
+    outline: 2px solid var(--accent-emerald);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* High Contrast Mode Adjustments */
+@media (forced-colors: active) {
+    .project-item, .experience-item, .timeline-item {
+        border: 2px solid CanvasText;
+    }
+    .top-nav a.active {
+        border-left: 4px solid Highlight;
+        color: Highlight;
+    }
+}
+
+/* --- Responsive Layout Breakpoints --- */
+
+/* Tablets and Small Desktop (<= 1024px) */
+@media (max-width: 1024px) {
+    .page-content {
+        margin-left: 260px;
+        padding: 3rem 2rem;
+    }
+}
+
+/* Mobile & Portrait Viewports (<= 768px) */
+@media (max-width: 768px) {
+    /* 1. Re-position home navigation as a sticky top header on mobile */
+    .home-nav {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(9, 13, 22, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        padding: 0.8rem 1rem;
+        margin: 0;
+        animation: none;
+    }
+
+    .home-nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.8rem;
+    }
+
+    .home-nav a {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+        border-bottom: 2px solid transparent;
+    }
+
+    .home-nav a:hover {
+        border-bottom-color: var(--accent-teal);
+    }
+
+    /* 2. Re-position internal pages top navigation as sticky top header */
+    .top-nav {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(9, 13, 22, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        padding: 0.8rem 1rem;
+        margin: 0;
+        animation: none;
+    }
+
+    .top-nav ul {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.8rem;
+    }
+
+    .top-nav a {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+    }
+
+    .top-nav a:hover {
+        padding-left: 0.6rem;
+        border-left: none;
+        border-bottom-color: var(--accent-teal);
+        background-color: transparent;
+    }
+
+    .top-nav a.active {
+        background-color: transparent;
+        border-left: none;
+        border-bottom-color: var(--accent-emerald);
+    }
+
+    /* Shift page content to full width */
+    .page-content {
+        margin-left: 0;
+        padding: 2.5rem 1.5rem;
+    }
+
+    .page-section h1 {
+        font-size: 2.2rem;
+    }
+
+    .page-section h2 {
+        font-size: 1.4rem;
+        margin-top: 2rem;
+    }
+
+    .project-item,
+    .experience-item,
+    .timeline-item {
+        padding: 1.25rem;
+    }
+    
+    .landing {
+        padding-top: 2rem; /* Reset top padding since header is sticky/top */
+    }
+}
+
+/* Very Small Mobile Viewports (<= 480px) */
+@media (max-width: 480px) {
+    .home-nav, .top-nav {
+        padding: 0.6rem 0.5rem;
+    }
+
+    .home-nav ul, .top-nav ul {
+        gap: 0.3rem 0.5rem;
+    }
+
+    .home-nav a, .top-nav a {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    .page-content {
+        padding: 2rem 1rem;
+    }
+
+    .page-section h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .profile-photo {
+        width: 170px;
+        height: 170px;
+        border-radius: 16px;
+    }
+
+    .doing-list,
+    .skills-list,
+    .values-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-title {
+        font-size: 2.4rem;
+    }
+}
+
+/* --- Entry Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Chronological Blog/Vlog Styles (Bvlogythingy) --- */
+.vlog-date-tag {
+    display: inline-block;
+    background: var(--bg-dark);
+    border: 1px solid var(--accent-emerald);
+    color: var(--accent-emerald);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 30px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
+}
+
+.vlog-media-mock {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, rgba(22, 28, 45, 0.85), rgba(15, 23, 42, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.2rem 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.vlog-media-mock:hover {
+    border-color: var(--accent-emerald);
+    transform: scale(1.005);
+}
+
+.vlog-media-mock .play-button {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.12);
+    border: 2px solid var(--accent-emerald);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-emerald);
+    transition: var(--transition-smooth);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+/* Play button SVG look using pure CSS */
+.vlog-media-mock .play-button::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 18px;
+    border-color: transparent transparent transparent var(--accent-emerald);
+    margin-left: 5px; /* Offset to center triangle */
+    transition: var(--transition-smooth);
+}
+
+.vlog-media-mock:hover .play-button {
+    background: var(--accent-emerald);
+    transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.6);
+}
+
+.vlog-media-mock:hover .play-button::before {
+    border-left-color: #fff;
+}
+
+.vlog-media-label {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Navigation Subtitles (Wrapped & 25% Smaller) --- */
+.nav-subtitle {
+    display: block;
+    font-size: 0.75rem; /* 25% smaller than the ~1rem link text */
+    opacity: 0.5;
+    margin-top: 0.15rem;
+    font-weight: 300;
+    line-height: 1.2;
+    transition: var(--transition-smooth);
+    text-transform: none; /* Keep the exact casing for (like a bvlogythingy) */
+}
+
+/* Absolute position only on desktop home navigation to prevent vertical misalignment of siblings */
+.home-nav a {
+    position: relative;
+}
+
+.home-nav .nav-subtitle {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    margin-top: 0.15rem;
+}
+
+.top-nav a:hover .nav-subtitle,
+.home-nav a:hover .nav-subtitle {
+    opacity: 0.9;
+    color: var(--accent-teal);
+}
+
+.top-nav a.active .nav-subtitle {
+    color: var(--accent-emerald);
+    opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+    .nav-subtitle {
+        display: inline;
+        font-size: 0.7rem;
+        margin-left: 0.2rem;
+        opacity: 0.6;
+    }
+    .nav-subtitle::before {
+        content: ' ';
+    }
+    /* Reset home navigation subtitle position on mobile sticky horizontal bar */
+    .home-nav .nav-subtitle {
+        position: static;
+        transform: none;
+        white-space: normal;
+        margin-top: 0;
+        display: inline;
+    }
+}
+
+
+/* ---- Vlog entry header: art-deco emblem + date/title ---- */
+.entry-head {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.entry-head .vlog-date-tag {
+    margin-bottom: 0.5rem;
+}
+
+.entry-head h3 {
+    margin: 0;
+}
+
+.deco-emblem {
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    color: var(--accent-emerald);
+    opacity: 0.9;
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.25));
+}
+
+/* Deco divider between entries */
+.timeline-item + .timeline-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-teal), transparent);
+    opacity: 0.35;
+}
+
+@media (max-width: 600px) {
+    .entry-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .deco-emblem {
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* --- Home Page Contact Strip --- */
+/* A single slim glass strip beneath the name: location, email, LinkedIn,
+   separated by hairline dividers. Stacks into rows on small screens. */
+
+.contact-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.6rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 0.75rem 0.9rem;
+    box-shadow: var(--shadow-premium);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.contact-strip .item {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0 1.2rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: var(--transition-smooth);
+}
+
+.contact-strip .item + .item {
+    border-left: 1px solid var(--border-color);
+}
+
+.contact-strip svg {
+    flex: 0 0 17px;
+    width: 17px;
+    height: 17px;
+    color: var(--accent-emerald);
+}
+
+.contact-strip a.item:hover {
+    color: var(--accent-emerald);
+}
+
+@media (max-width: 700px) {
+    .contact-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.85rem;
+        border-radius: 16px;
+        padding: 1.1rem 1.4rem;
+    }
+
+    .contact-strip .item {
+        padding: 0;
+    }
+
+    .contact-strip .item + .item {
+        border-left: none;
+    }
+}
+
+/* --- Photo figures (what-ive-done, what-im-doing) --- */
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.25rem 0 0.5rem;
+}
+
+.photo-grid figure, .photo-single figure { margin: 0; }
+
+.photo-grid img, .photo-single img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-premium);
+}
+
+.photo-grid figcaption, .photo-single figcaption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.45rem;
+    line-height: 1.4;
+}
+
+.photo-single { max-width: 30rem; margin: 1.25rem 0 0.5rem; }
+.photo-portrait { max-width: 19rem; }
+figcaption a { color: var(--accent-emerald); }
+
+@media (max-width: 640px) {
+    .photo-grid { grid-template-columns: 1fr; }
+}
+
+/* --- bvlogythingy entry labels + setup diagrams --- */
+
+.vlog-label {
+    display: inline-block;
+    background: var(--bg-dark);
+    border: 1px solid var(--accent-teal);
+    color: var(--accent-teal);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: lowercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 30px;
+    margin-left: 0.4rem;
+    margin-bottom: 0.5rem;
+    vertical-align: top;
+}
+
+.vlog-label.creative {
+    border-color: #38bdf8;
+    color: #38bdf8;
+}
+
+.flow-diagram {
+    margin: 1.5rem 0 0.5rem;
+    max-width: 44rem;
+}
+
+.flow-diagram svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    color: var(--accent-emerald);
+}
+
+.flow-diagram svg text {
+    fill: var(--text-secondary);
+    font-family: var(--font-sans);
+}
+
+.flow-diagram figcaption {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.45rem;
+    line-height: 1.4;
+}
