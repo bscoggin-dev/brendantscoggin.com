@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Brendan Scoggin</title>
+    <meta name="description" content="Resume of Brendan Scoggin: Senior Program Manager with 11 years at Google across Geo/Mapping imagery operations and Google Express e-commerce, now working in film and media production management.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="brendan_style.css">
+    <style>
+        /* Disable fi/fl/ffi ligatures everywhere. Headless Chromium substitutes those
+           letter pairs with U+FB01/FB02/FB03 at PDF layout time, and PDF text
+           extractors (what ATS systems read) decode them back to those codepoints,
+           so "Certificate" extracts as "Certiﬁcate" and a keyword search misses it.
+           The PDF is printed from this page, so this stays global. */
+        * {
+            font-variant-ligatures: none;
+            font-feature-settings: "liga" 0, "clig" 0, "dlig" 0;
+        }
+
+        /* ---- page (screen: site design language) ---- */
+        .resume {
+            max-width: 52rem;
+            margin: 0 auto;
+            padding: 6.5rem 1.25rem 4rem;
+        }
+
+        header.masthead { margin-bottom: 2rem; }
+        header.masthead h1 {
+            font-family: 'Space Grotesk', var(--font-sans);
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-emerald) 0%, var(--accent-teal) 45%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-rule {
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-emerald), var(--accent-teal), transparent);
+            margin: 0.6rem 0 0.85rem;
+        }
+        .contact {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.75rem;
+        }
+        .contact a { color: var(--text-muted); text-decoration: none; transition: var(--transition-smooth); }
+        .contact a:hover { color: var(--accent-emerald); }
+        .contact .sep { color: var(--border-color); }
+
+        .actions { margin-top: 1.1rem; }
+        .actions a {
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--accent-emerald);
+            border: 1px solid var(--border-hover);
+            background: var(--accent-low-op);
+            border-radius: 10px;
+            padding: 0.45rem 1rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .actions a:hover { background: var(--accent-emerald); border-color: var(--accent-emerald); color: #06281d; }
+
+        section.block {
+            margin-top: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem 1.75rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        section.block > h2 {
+            font-family: 'Space Grotesk', var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent-emerald);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.45rem;
+            margin-bottom: 1rem;
+        }
+
+        .summary { font-size: 1rem; color: var(--text-secondary); }
+
+        .skill-line { margin-bottom: 0.55rem; font-size: 0.95rem; color: var(--text-secondary); }
+        .skill-line .cat { font-weight: 600; color: var(--text-primary); }
+
+        .entry { margin-bottom: 1.35rem; }
+        .entry:last-child { margin-bottom: 0; }
+        .entry h3 {
+            font-size: 1.02rem;
+            font-weight: 600;
+            line-height: 1.35;
+            color: var(--text-primary);
+        }
+        .entry h3 .note { font-weight: 400; font-style: italic; color: var(--text-muted); }
+        .entry .meta {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+        .entry ul { margin: 0 0 0 1.15rem; }
+        .entry li { margin-bottom: 0.3rem; font-size: 0.95rem; color: var(--text-secondary); }
+
+        ul.plain { list-style: none; margin: 0; }
+        ul.plain li { margin-bottom: 0.45rem; font-size: 0.95rem; color: var(--text-secondary); }
+
+        .edu-item { margin-bottom: 0.6rem; font-size: 0.95rem; color: var(--text-secondary); }
+        .edu-item .degree { font-weight: 600; color: var(--text-primary); }
+
+        footer.pagefoot {
+            margin-top: 2.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        footer.pagefoot a { color: var(--accent-emerald); }
+
+        @media (max-width: 640px) {
+            header.masthead h1 { font-size: 1.75rem; }
+            .resume { padding: 5.5rem 1rem 3rem; }
+            section.block { padding: 1.15rem 1.1rem; }
+        }
+
+        /* ---- print: self-contained light rendering; the PDF is printed from
+           this page, so these rules are what keeps page and PDF from drifting. ---- */
+        @media print {
+            @page { margin: 0.5in; }
+            .top-nav, .actions, footer.pagefoot { display: none; }
+            /* rem units scale off :root, so shrink there — setting body alone
+               would leave every rem-sized child at screen size. */
+            html { font-size: 8.2pt; }
+            body {
+                background: #ffffff !important;
+                background-image: none !important;
+                color: #1a1a2e;
+                font-family: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+                line-height: 1.32;
+            }
+            .resume { max-width: none; padding: 0; }
+            header.masthead { margin-bottom: 0.7rem; }
+            header.masthead h1 {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 1.9rem;
+                background: none;
+                -webkit-background-clip: initial;
+                -webkit-text-fill-color: #1a1a2e;
+                background-clip: initial;
+                color: #1a1a2e;
+            }
+            .gradient-rule { margin: 0.35rem 0 0.4rem; background: linear-gradient(90deg, hsl(187 74% 32%), rgba(26,26,46,0.15)); }
+            .contact, .contact a { color: #55566b; }
+            section.block {
+                margin-top: 0.85rem;
+                background: none;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+            section.block > h2 {
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                color: hsl(187 74% 32%);
+                border-bottom: 1px solid #d9dae2;
+                margin-bottom: 0.45rem;
+                padding-bottom: 0.2rem;
+            }
+            .summary, .entry li, .skill-line, .edu-item, ul.plain li { color: #1a1a2e; }
+            .skill-line .cat, .entry h3, .edu-item .degree { color: #1a1a2e; }
+            .entry h3 .note, .entry .meta { color: #55566b; }
+            .entry { margin-bottom: 0.6rem; page-break-inside: avoid; }
+            .entry .meta { margin-bottom: 0.15rem; }
+            .entry li { margin-bottom: 0.1rem; }
+            .skill-line { margin-bottom: 0.28rem; }
+            .edu-item { margin-bottom: 0.25rem; }
+            ul.plain li { margin-bottom: 0.15rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav" aria-label="Sidebar Navigation">
+        <ul>
+            <li><a href="index.html" id="nav-home">home</a></li>
+            <li><a href="work.html" id="nav-work">work i've done</a></li>
+            <li><a href="what-im-doing.html" id="nav-what-im-doing">work i'm doing <span class="nav-subtitle">(like a bvlogythingy)</span></a></li>
+            <li><a href="resume.html" class="active" id="nav-resume">resume</a></li>
+            <li><a href="https://www.linkedin.com/in/brendantscoggin" target="_blank" rel="noopener" id="nav-linkedin">linkedin</a></li>
+        </ul>
+    </nav>
+
+    <main class="resume">
+        <header class="masthead">
+            <h1>Brendan Scoggin</h1>
+            <div class="gradient-rule"></div>
+            <p class="contact">
+                <span>San Francisco, CA</span>
+                <span class="sep">|</span>
+                <a href="tel:617-872-8888">617-872-8888</a>
+                <span class="sep">|</span>
+                <a href="mailto:brendantscoggin@gmail.com">brendantscoggin@gmail.com</a>
+                <span class="sep">|</span>
+                <a href="https://www.linkedin.com/in/brendantscoggin" target="_blank" rel="noopener">linkedin.com/in/brendantscoggin</a>
+                <span class="sep">|</span>
+                <a href="https://brendantscoggin.com">brendantscoggin.com</a>
+            </p>
+            <p class="actions"><a href="Brendan_Scoggin_Resume.pdf" target="_blank" rel="noopener">Download PDF</a></p>
+        </header>
+
+        <section class="block" id="summary">
+            <h2>Summary</h2>
+            <p class="summary">Senior Program Manager with 11 years at Google running operations programs across Geo/Mapping imagery collection and Google Express e-commerce, now pairing that big-tech operational rigor with hands-on production experience on active film sets. Built and scaled physical operations from zero &mdash; field teams, hub throughput, supply chains, vendor contracts &mdash; and led the wind-down of a $500M product line. Since 2022, working in film and media production management while completing an AA in Film Production, bringing the same capacity modeling, scheduling discipline, and cross-functional execution to set-level logistics. AWS Certified Cloud Practitioner with current SQL, Splunk, and applied-AI credentials.</p>
+        </section>
+
+        <section class="block" id="skills">
+            <h2>Skills</h2>
+            <p class="skill-line"><span class="cat">Program and Operations Management:</span> capacity modeling, resource planning, cross-functional execution, procurement (RFP/RFQ/SOW/BAFO), vendor management, supply chain operations, PMO, process design and SOPs, risk mitigation, Agile, Scrum.</p>
+            <p class="skill-line"><span class="cat">Production and Creative Technologies:</span> production management (prep, shoot, wrap), technical logistics, asset allocation, location permit coordination, Adobe Creative Suite, Avid Pro Tools.</p>
+            <p class="skill-line"><span class="cat">Cloud and Infrastructure:</span> AWS (Certified Cloud Practitioner), cloud-hosted collaboration repositories, ingestion and quality-control pipelines.</p>
+            <p class="skill-line"><span class="cat">Geospatial and Imagery:</span> GIS, GNSS positioning (GPS/GLONASS, NovAtel), aerial and ground imagery collection, LIDAR data collection, imagery ingest and quality-control pipelines.</p>
+            <p class="skill-line"><span class="cat">Data, AI and Analytics:</span> SQL, Splunk (KPI and log analytics), generative AI for pre-production automation, agentic automation, Python (scripting), HTML, CSS.</p>
+        </section>
+
+        <section class="block" id="experience">
+            <h2>Professional Experience</h2>
+
+            <div class="entry">
+                <h3>Google &mdash; PMO Program Manager</h3>
+                <p class="meta">Mountain View / San Francisco Bay Area, CA. Feb 2017 to Jun 2020.</p>
+                <ul>
+                    <li>Led the shutdown of Google Express ship-from-store operations, eliminating $500M in costs.</li>
+                    <li>Executed the &ldquo;merchant direct&rdquo; fulfillment migration off in-store fulfillment models, increasing SKU availability and diversity by 50 percent and reducing VCPO by approximately 15 percent.</li>
+                    <li>Transitioned 35 percent of TVC labor to a single-source vendor management company, eliminating co-employment risk and saving $100M in vendor contracts for 2019.</li>
+                    <li>Owned the asset distribution model and security policy planning for 500+ store locations and 2,500+ store operators.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>Google &mdash; Program Manager, Google Express E-Commerce Operations</h3>
+                <p class="meta">San Francisco Bay Area, CA. Mar 2015 to Jan 2016.</p>
+                <ul>
+                    <li>Led GSX Southeast expansion, adding 100M customers to the Google Shopping network and increasing revenue by $35M year over year.</li>
+                    <li>Pitched a &ldquo;Distributed Stores&rdquo; coverage model bringing lower-48 2-day SLA service to 250M customers for large-volume merchant partners including Costco, Target, and Whole Foods.</li>
+                    <li>Reduced merchant launch time by 15 percent, partnering with Engineering and BD leads to build a launch-control feature that eliminated product latency code for new merchant coverage launches.</li>
+                    <li>Led the 100 percent carbon-free shipping program in partnership with the Google sustainability team.</li>
+                    <li>Eliminated 30 percent of in-store Google-supplied assets, reducing overall launch times and costs by 5 percent.</li>
+                    <li>Opened the GSX Atlanta office, hiring 5 PGM operations leads and 1 market manager.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>Google &mdash; Rollout Team Manager <span class="note">(full-time, converted from contract Nov 2014)</span></h3>
+                <p class="meta">San Francisco Bay Area, CA. Nov 2014 to Mar 2015.</p>
+                <ul>
+                    <li>Led a team of 10 program managers on strategy and execution, launching new features and processes into Google Express operations daily workflows.</li>
+                    <li>Defined procurement strategy and established supply chain partnerships (RFP, RFQ, SOW, BAFO) for GSX operations, scaling to approximately 3,500 orders per day across 500+ store locations.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>Google &mdash; Hub Manager <span class="note">(contract)</span></h3>
+                <p class="meta">San Francisco, CA. Nov 2013 to Nov 2014.</p>
+                <ul>
+                    <li>Analyzed operations and developed a revised capacity model, reducing labor cost at the SF Hub by 35 percent and driving overall product costs down.</li>
+                    <li>Led rollout of a proprietary app in the San Francisco Hub, cutting route prep time by 10 percent and increasing shipping-system tracking visibility by 90 percent, resulting in fewer missing parcels.</li>
+                    <li>Created a training and certification program with standardized efficiency metrics, enabling measurable operator performance.</li>
+                    <li>Improved operations team morale and work-life balance, decreasing attrition by 10 percent.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>Google &mdash; Field Operations Lead <span class="note">(contract)</span></h3>
+                <p class="meta">San Francisco Bay Area, CA. Nov 2012 to Nov 2013.</p>
+                <ul>
+                    <li>Created and ramped the Google Shopping Express field operations team from 0 to 30 operators serving all GSX stores, covering scheduling, supply runs, process development, and metric tracking.</li>
+                    <li>Built procurement practices for GSX including packaging design and production, vehicle and electronic assets, enabling the project to scale from approximately 200 to 5,000 orders per day in the Bay Area within 12 months.</li>
+                    <li>Developed the field operations supply chain including policies and logistics, eliminating emergency supply runs by 80 percent and stabilizing in-store operations across all GSX locations.</li>
+                    <li>Owned development of GSX-branded packaging, partnering with App, Web, BD, Legal, and Marketing to build Google&rsquo;s physical identity.</li>
+                    <li>Established vendor agreements for the GSX pilot leading to public launch, reducing bag packaging cost from $1.50 to $0.50 per unit and saving $500K.</li>
+                    <li>Co-filed a design patent on the Google Shopping Express grocery bag (GP-18430-00-US, JMI Ref. GOOG-1395, with S. Truslow).</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>JDV Hotels &mdash; In-House Web Designer <span class="note">(contract)</span></h3>
+                <p class="meta">San Francisco Bay Area, CA. Feb 2012 to Nov 2012.</p>
+                <ul>
+                    <li>Designed and maintained in-house web properties.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>Google &mdash; Geo / Mapping Operations Lead <span class="note">(contract)</span></h3>
+                <p class="meta">Mountain View, CA. Mar 2009 to Nov 2009; Feb 2010 to Feb 2012.</p>
+                <ul>
+                    <li>Revised the imagery pipeline and metric reporting process with the Earth and Maps Imagery teams, increasing operations team capacity by approximately 25 percent.</li>
+                    <li>Coordinated a fleet of 14+ collection vehicles capturing imagery for Google Earth and Maps, meeting the goal of launchable imagery for 50 major cities.</li>
+                    <li>Automated NovAtel GNSS-to-imagery ingest workflows (GPS/GLONASS positioning data) in partnership with cross-functional leads and engineers, increasing data velocity, volume, and quality by 25 percent.</li>
+                    <li>Trained and managed 6 Quality Control Operations Leads, improving auditing accuracy and speed and contributing to a 30 percent increase in successfully collected imagery.</li>
+                    <li>Created the collection tracking arrival form feeding all collections into the tracker database, resulting in 4x as many successful collections per day over a two-year period.</li>
+                    <li>Identified 4 external partners for domestic and international expansion, adding 24 collection vehicles to extend coverage by 20 major cities.</li>
+                    <li>Redesigned post-flight arrival evaluations with automated quality-check scripts, shortening the QA cycle.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>Google &mdash; Project Chauffeur, Mapping Data Specialist and Safety Tester <span class="note">(contract)</span></h3>
+                <p class="meta">Mountain View, CA. Nov 2008 to Mar 2009.</p>
+                <ul>
+                    <li>Contributed to the project milestone of 100,000 autonomous miles driven without incident.</li>
+                    <li>Conducted safety-testing protocols for self-driving vehicles, using Python scripts to monitor LIDAR, camera, and GPS sensor performance and logging edge cases in JIRA for engineering teams.</li>
+                    <li>Led mapping missions along Highway 1 and the greater Los Angeles area, collecting LIDAR data and organizing datasets in SharePoint to support future testing phases.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>Long Meadow Ranch &mdash; Customer Service and Marketing Administrative Assistant</h3>
+                <p class="meta">St. Helena, CA. Sep 2007 to Oct 2008.</p>
+                <ul>
+                    <li>Developed and placed content for a new website, online store, and email database.</li>
+                    <li>Designed and developed weekly email newsletters to customers and members.</li>
+                    <li>Developed and implemented marketing materials for email and print promotions, and managed order fulfillment and shipping issue resolution.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="block" id="film">
+            <h2>Film and Media Production</h2>
+
+            <div class="entry">
+                <h3>&ldquo;Slumped Over Man&rdquo; (Short Film) &mdash; Production Manager</h3>
+                <p class="meta">Mar 2026 to Apr 2026.</p>
+                <ul>
+                    <li>Managed technical logistics and material allocation across all production departments using Google Workspace tools.</li>
+                    <li>Coordinated pre-production planning, marketing, scheduling, and shot-list planning through deployment of generative AI tools, streamlining the overall production cycle by 10 percent.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>Perhaps Productions (AMEX SIGMA with Guy Raz) &mdash; Production Specialist</h3>
+                <p class="meta">Oct 2025.</p>
+                <ul>
+                    <li>Managed production logistics, vehicle delivery, and team material asset allocation using Google Workspace tools, ensuring 100 percent on-time production asset delivery and return.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>Hotbed LLC &mdash; Field Operations Coordinator <span class="note">(contract)</span></h3>
+                <p class="meta">Apr 2025 to Jun 2025.</p>
+                <ul>
+                    <li>Executed safety audits and operational checklist protocols during high-speed filming, ensuring zero safety incidents and maintaining strict quality standards.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>City College of San Francisco &mdash; Cinema Department Equipment Manager <span class="note">(part-time)</span></h3>
+                <p class="meta">Jan 2025 to Feb 2025.</p>
+                <ul>
+                    <li>Managed cinema department equipment inventory and checkout.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>Unsavory Elements (Independent Feature) &mdash; Production Assistant</h3>
+                <p class="meta">Dec 2024 to Jan 2025.</p>
+                <ul>
+                    <li>Executed planning for production start and supported the production associate team with cast travel and logistics.</li>
+                    <li>Developed and managed scheduling tools for team management.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <h3>ScoNeil Productions &mdash; Podcast Producer</h3>
+                <p class="meta">Jun 2022 to Jan 2023.</p>
+                <ul>
+                    <li>Directed end-to-end development, audio editing, and distribution channels for independent podcasts, expanding the audience base to approximately 1,000 active weekly listeners.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="block" id="independent-tech">
+            <h2>Independent Technology Work</h2>
+
+            <div class="entry">
+                <h3>AI Tooling and Agentic Automation</h3>
+                <p class="meta">2024 to Present.</p>
+                <ul>
+                    <li>Build and operate multi-model pipelines routing work across several LLM providers, plus scheduled autonomous services running unattended against production data with integrations to seven external systems.</li>
+                    <li>Built and shipped a booking and payments product for a specialized-agriculture client, owning requirements through delivery.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="block" id="education">
+            <h2>Education</h2>
+            <p class="edu-item"><span class="degree">Associate of Arts, Film Production</span>, City College of San Francisco. Sep 2023 to Jun 2026. Coursework in Film/TV Production, Broadcasting, and Computer Science.</p>
+            <p class="edu-item"><span class="degree">Certificate of Study</span>, University of California, Berkeley. 2011 to 2012.</p>
+            <p class="edu-item"><span class="degree">Graphic Web Design</span>, Santa Rosa Junior College. 2006 to 2008.</p>
+            <p class="edu-item"><span class="degree">Bachelor of Arts</span>, Boston University. Sep 2000 to May 2004. Theater Conservatory; LAMDA (London) semester abroad.</p>
+        </section>
+
+        <section class="block" id="certifications">
+            <h2>Certifications</h2>
+            <ul class="plain">
+                <li>Advanced Project Management, Stanford University. Dec 2015.</li>
+                <li>AWS Certified Cloud Practitioner, Amazon Web Services. Dec 2025 to Dec 2028 (Credly verified).</li>
+                <li>Fundamentals of Artificial Intelligence, City College of San Francisco, 2026</li>
+                <li>Splunk Fundamentals, City College of San Francisco</li>
+                <li>Fundamentals of Cloud Computing and SQL, City College of San Francisco</li>
+                <li>Creative Engineering Certificate, Mark Rober / Monthly</li>
+            </ul>
+        </section>
+
+        <footer class="pagefoot">
+            <p>A PDF copy is available: <a href="Brendan_Scoggin_Resume.pdf" target="_blank" rel="noopener">Brendan_Scoggin_Resume.pdf</a></p>
+        </footer>
+    </main>
+</body>
+</html>

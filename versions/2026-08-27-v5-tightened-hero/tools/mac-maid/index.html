@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mac-maid — system hygiene that asks before it acts</title>
+    <meta name="description" content="A read-only audit for repo hygiene and filesystem clutter on macOS. It finds things; you decide what happens to them.">
+    <link rel="stylesheet" href="../tool.css">
+</head>
+<body class="theme-maid">
+    <header class="tool-header">
+        <div class="tool-wrap">
+            <a class="tool-wordmark" href="#top"><span class="tool-mark-sm"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 6v24"/><path d="M21 30h22"/><path d="M21 30 16 54h32l-5-24"/><path d="M26 34v20M32 34v20M38 34v20"/></svg></span>MAC MAID</a>
+            <nav class="tool-nav">
+                <a href="#audit">Audit</a>
+                <a href="#tiers">Tiers</a>
+                <a href="#review">Review</a>
+                <a href="#runs">How it runs</a>
+                <a href="https://github.com/bscoggin-dev/mac-maid" target="_blank" rel="noopener">GitHub &#8599;</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="tool-hero">
+            <div class="tool-wrap">
+                <span class="tool-mark"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M32 6v24"/><path d="M21 30h22"/><path d="M21 30 16 54h32l-5-24"/><path d="M26 34v20M32 34v20M38 34v20"/></svg></span>
+                <p class="tool-eyebrow">A read-only audit for macOS</p>
+                <h1 class="tool-title">mac<br>maid</h1>
+                <p class="tool-lede">It finds stale repos, retired agents, and the clutter piling up in Downloads and on the Desktop. Then it stops and waits for you.</p>
+                <p class="tool-sub">The detector never deletes anything. Every action goes through a review you approve item by item.</p>
+                <a class="tool-cta" href="https://github.com/bscoggin-dev/mac-maid" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+        </section>
+
+        <section class="tool-section" id="audit">
+            <div class="tool-wrap">
+                <h2>The audit</h2>
+                <div class="tool-grid">
+                    <div class="tool-card">
+                        <h3>Domain A — repo and agent hygiene</h3>
+                        <p>Agents that were retired but left installed, repos that have gone quiet, scheduled jobs loaded on the wrong machine, and config that drifted between Macs.</p>
+                    </div>
+                    <div class="tool-card">
+                        <h3>Domain B — filesystem clutter</h3>
+                        <p>A tiered staleness pass over Downloads, the Desktop, and screenshots. Files only, never directories, with an allowlist for the ones that are meant to sit there.</p>
+                    </div>
+                </div>
+                <p class="tool-note">Secrets are flagged and never acted on. If the audit finds something that looks like a credential, it tells you and stops — it will not move, archive, or delete it.</p>
+            </div>
+        </section>
+
+        <section class="tool-section" id="tiers">
+            <div class="tool-wrap">
+                <h2>The tiers</h2>
+                <ul class="tool-tiers">
+                    <li><strong>Critical</strong><span>Older than 30 days</span></li>
+                    <li><strong>Warning</strong><span>15 to 30 days</span></li>
+                    <li><strong>Notice</strong><span>7 to 15 days</span></li>
+                    <li><strong>Ignored</strong><span>Newer than 7 days — you are probably still using it</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="tool-section" id="review">
+            <div class="tool-wrap">
+                <h2>The review</h2>
+                <p>The audit writes a proposal manifest. Nothing in it happens on its own.</p>
+                <p>Running the review walks you through the manifest one item at a time. Non-destructive backups are applied automatically because they cannot lose anything. Everything else — archiving, deleting, uninstalling a retired agent — waits for an explicit yes.</p>
+                <p>The detector and the actor are separate on purpose. A tool that both decides and acts is a tool you have to trust completely. This one only ever hands you a list.</p>
+            </div>
+        </section>
+
+        <section class="tool-section" id="runs">
+            <div class="tool-wrap">
+                <h2>How it runs</h2>
+                <p>A launchd job runs the audit monthly, on the first at 10:00, wrapped in caffeinate so a sleeping laptop does not skip it. It runs on one machine only — the scheduler host — so two Macs never double-run the same audit.</p>
+                <p>When the audit finds something actionable it sends a nudge: an email, a macOS banner, and a push topic. When it finds nothing, it stays quiet. A hygiene tool that pings you every month whether or not there is anything to do is a hygiene tool you learn to ignore.</p>
+                <p class="tool-note">Everything it touches lives on local disk. Nothing runs from or writes through iCloud — background jobs are denied there, and the failure is silent.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="tool-footer">
+        <div class="tool-wrap">
+            <p>Built by <a href="/">Brendan Scoggin</a>. Source on <a href="https://github.com/bscoggin-dev/mac-maid" target="_blank" rel="noopener">GitHub</a>.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -23,6 +23,9 @@ Git already records every commit. This directory answers a different question:
 | v0 | 2026-08-13 | undefined | The live baseline. Four nav links, resume offsite to a Google Doc, zero projects. |
 | v1 | 2026-08-14 | undefined | Resume brought on-site as a hosted page + PDF. **Not shipped** — design conflicts with the rest of the site. |
 | v2 | 2026-08-17 | physical-world operator thesis (still unratified) | Resume restyled to the site's language and shipped; new what-ive-done page with the first photos (GSX era) and the patent card — staged pending review. |
+| v3 | 2026-08-27 | physical-world operator thesis | The live site as it stood the morning of the editorial redesign. Cut so v2's successor was not lost. **Deprecated.** |
+| v4 | 2026-08-27 | hiring reader — work before contact details | The editorial redesign: Fraunces display type, chronological uniform work cards, new work.html, project sites for mac-maid and judge-moody, who-i-am and what-ive-done retired from the nav. |
+| v5 | 2026-08-27 | hiring reader — work before contact details | Hero tightened after peer review: name on one line, asterisk dropped, ~430px of vertical air removed, eyebrow renamed "Work I'm proud of". Headshot left for a new photo. |
 
 ## Note on public reachability
 

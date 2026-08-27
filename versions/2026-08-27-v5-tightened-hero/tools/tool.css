@@ -1,0 +1,193 @@
+/* Shared stylesheet for the project sites — self-contained. Must NOT import or
+   reference brendan_style.css. Per-project themes live at the bottom of this file. */
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap');
+
+:root {
+    --tool-bg: #0d0d0c;
+    --tool-surface: #161614;
+    --tool-border: rgba(255, 255, 255, 0.09);
+    --tool-text: #ece8e1;
+    --tool-muted: #8f8a80;
+    --tool-accent: #f0a53a;
+    --tool-live: #3ddc84;
+    --tool-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --tool-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --tool-display: 'Archivo Black', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--tool-bg);
+    color: var(--tool-text);
+    font-family: var(--tool-sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+.tool-wrap { max-width: 940px; margin: 0 auto; padding: 0 1.5rem; }
+
+.tool-header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(13, 13, 12, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--tool-border);
+}
+.tool-header .tool-wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 1rem; padding-bottom: 1rem;
+}
+.tool-wordmark {
+    font-family: var(--tool-mono);
+    font-size: 0.82rem; letter-spacing: 0.22em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.6rem; color: var(--tool-text);
+    text-decoration: none;
+}
+.tool-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--tool-live); flex: none;
+}
+.tool-nav { display: flex; gap: 1.5rem; }
+.tool-nav a {
+    font-family: var(--tool-mono); font-size: 0.8rem;
+    color: var(--tool-muted); text-decoration: none;
+}
+.tool-nav a:hover { color: var(--tool-accent); }
+
+.tool-hero { padding: 6rem 0 5rem; }
+.tool-eyebrow {
+    font-family: var(--tool-mono);
+    font-size: 0.78rem; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--tool-muted); margin: 0 0 1.75rem;
+}
+.tool-title {
+    font-family: var(--tool-display);
+    font-size: clamp(3rem, 11vw, 7rem);
+    line-height: 0.92; letter-spacing: -0.02em; text-transform: uppercase;
+    margin: 0 0 2rem; color: var(--tool-text);
+}
+.tool-lede { font-size: 1.2rem; max-width: 46ch; margin: 0 0 1.5rem; }
+.tool-sub {
+    font-family: var(--tool-mono); font-size: 0.9rem;
+    color: var(--tool-muted); max-width: 52ch; margin: 0 0 2.5rem;
+}
+
+.tool-section { padding: 4rem 0; border-top: 1px solid var(--tool-border); }
+.tool-section h2 {
+    font-family: var(--tool-mono);
+    font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--tool-accent); margin: 0 0 2rem; font-weight: 500;
+}
+.tool-section h3 { font-size: 1.1rem; margin: 0 0 0.5rem; }
+.tool-section p { color: var(--tool-text); margin: 0 0 1rem; max-width: 62ch; }
+
+.tool-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.tool-card {
+    background: var(--tool-surface);
+    border: 1px solid var(--tool-border);
+    border-radius: 8px; padding: 1.5rem;
+}
+.tool-card p { color: var(--tool-muted); font-size: 0.95rem; margin: 0; }
+
+.tool-tiers { list-style: none; padding: 0; margin: 0; }
+.tool-tiers li {
+    display: flex; gap: 1rem; align-items: baseline;
+    padding: 0.85rem 0; border-bottom: 1px solid var(--tool-border);
+    font-family: var(--tool-mono); font-size: 0.9rem;
+}
+.tool-tiers strong { color: var(--tool-accent); min-width: 8ch; }
+
+.tool-note {
+    font-family: var(--tool-mono); font-size: 0.85rem;
+    color: var(--tool-muted); border-left: 2px solid var(--tool-accent);
+    padding-left: 1rem; margin-top: 2rem;
+}
+
+.tool-footer {
+    border-top: 1px solid var(--tool-border);
+    padding: 3rem 0; font-family: var(--tool-mono); font-size: 0.82rem;
+    color: var(--tool-muted);
+}
+.tool-footer a { color: var(--tool-accent); }
+
+@media (max-width: 700px) {
+    .tool-grid { grid-template-columns: 1fr; }
+    .tool-nav { display: none; }
+    .tool-hero { padding: 3.5rem 0 3rem; }
+}
+
+
+/* ============================================================
+   PER-PROJECT THEMES
+   Structure is identical across tool sites; the accent and the
+   heading emblem are what distinguish them.
+   ============================================================ */
+
+body.theme-maid {
+    --tool-accent: #f0a53a;   /* amber */
+}
+
+body.theme-judge {
+    --tool-accent: #6ea8fe;   /* slate blue */
+}
+
+/* Heading emblem — the project's own mark, set beside the title. */
+.tool-mark {
+    width: clamp(56px, 8vw, 88px);
+    height: clamp(56px, 8vw, 88px);
+    color: var(--tool-accent);
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.tool-mark svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* The wordmark carries a small version of the same mark. */
+.tool-wordmark .tool-mark-sm {
+    width: 18px;
+    height: 18px;
+    color: var(--tool-accent);
+    flex: none;
+}
+
+.tool-wordmark .tool-mark-sm svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Primary call to action, and its honest counterpart for a project whose
+   source is not public. Both occupy the same slot so the two sites keep
+   the same structure. */
+.tool-cta {
+    display: inline-block;
+    background: var(--tool-accent);
+    color: #14140f;
+    font-family: var(--tool-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.9rem 1.6rem;
+    border-radius: 4px;
+    transition: opacity 0.2s ease;
+}
+
+.tool-cta:hover { opacity: 0.85; }
+
+.tool-cta-muted {
+    display: inline-block;
+    border: 1px solid var(--tool-border);
+    color: var(--tool-muted);
+    font-family: var(--tool-mono);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.9rem 1.6rem;
+    border-radius: 4px;
+}
