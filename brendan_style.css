@@ -1009,12 +1009,16 @@ figcaption a { color: var(--accent-emerald); }
 }
 
 .hero-body {
-    max-width: 42ch;
+    max-width: 46ch;
     font-family: var(--font-sans);
-    font-size: 1.05rem;
-    line-height: 1.75;
+    font-size: 0.92rem;
+    line-height: 1.7;
     color: var(--text-secondary);
     margin: 0;
+}
+
+.hero-body + .hero-body {
+    margin-top: 0.95rem;
 }
 
 .hero-footnote {
