@@ -1005,7 +1005,9 @@ figcaption a { color: var(--accent-emerald); }
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 0.5rem;
+    /* pull up by the first line's half-leading so the cap-height of the
+       opening line optically aligns with the top edge of the photo */
+    margin-top: -0.42rem;
 }
 
 .hero-body {
