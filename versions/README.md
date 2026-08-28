@@ -26,6 +26,7 @@ Git already records every commit. This directory answers a different question:
 | v3 | 2026-08-27 | physical-world operator thesis | The live site as it stood the morning of the editorial redesign. Cut so v2's successor was not lost. **Deprecated.** |
 | v4 | 2026-08-27 | hiring reader — work before contact details | The editorial redesign: Fraunces display type, chronological uniform work cards, new work.html, project sites for mac-maid and judge-moody, who-i-am and what-ive-done retired from the nav. |
 | v5 | 2026-08-27 | hiring reader — work before contact details | Hero tightened after peer review: name on one line, asterisk dropped, ~430px of vertical air removed, eyebrow renamed "Work I'm proud of". Headshot left for a new photo. |
+| v6 | 2026-08-28 | hiring reader — work before contact details | Live page + stylesheet as deployed right before the Job4you long-form entry (click-to-expand diagram, metrics table). Cut for a one-copy revert. |
 
 ## Note on public reachability
 

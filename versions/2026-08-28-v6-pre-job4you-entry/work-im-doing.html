@@ -32,63 +32,6 @@
                 </section>
 
                 <div class="log-grid">
-                <section class="timeline-item wide" id="entry-2026-08-28">
-                    <div class="entry-head">
-                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h48L38 32v16l-12 6V32Z"/><path d="M32 40l6 6 10-12" /></svg>
-                        <div>
-                            <span class="vlog-date-tag">August 28, 2026</span><span class="vlog-label">career</span>
-                            <h3>Applying alone was never going to work</h3>
-                        </div>
-                    </div>
-                    <p>
-                        This is the long version of a <a href="https://www.linkedin.com/in/brendantscoggin" target="_blank" rel="noopener">post I put on LinkedIn</a> the same day. The short version: the first job search tool I built was a smarter alert filter, it did not work, and the rebuild finally did.
-                    </p>
-                    <p>
-                        The first version pulled the job alert emails out of Gmail, scored each listing, and showed me the ones that cleared a bar. It felt productive. When I finally sat down with the data in late July, two things were wrong with it. The intake was narrow, a couple of alert sources and a threshold, so I was seeing a thin slice of the market and applying to a thinner one. And the outreach side did not exist as a system at all. I had a spreadsheet of people I had messaged and no rule for who to contact next. When I audited a year of those messages in August, LinkedIn DMs got replies about 30 percent of the time and had produced zero meetings and zero referrals. Every meeting I had actually landed came from a direct email asking for a conversation. I was busy in the channel that did not work.
-                    </p>
-                    <p>
-                        So I rebuilt it, working with Claude, into the three stages in the graphic below. Click it to see it full size.
-                    </p>
-                    <div class="photo-single">
-                        <figure>
-                            <img class="zoomable" src="media/job4you-how-it-works.png" alt="Job4you, how it works: a funnel diagram in three stages. Intake collects job alerts from Gmail every hour, scores them 0 to 100, keeps 75 and above, and shows them in one dashboard. Apply drafts a tailored resume and cover letter, runs a quality check, then a human review gate before the application is submitted. Outreach searches the network for who you know at each company, ranks the warmest contacts first, drafts a personal note that waits in drafts, then a second human review gate before send." loading="lazy" tabindex="0" role="button" aria-label="Expand the diagram">
-                            <figcaption>The whole system on one page. The two orange diamonds are the human review gates, which is me.</figcaption>
-                        </figure>
-                    </div>
-                    <p>
-                        <strong>Intake</strong> runs on its own every hour. It reads alerts from every source I could route into one inbox, LinkedIn, Indeed, Jobright, Dice, Wellfound and the rest, parses each listing out of the digest, and scores it 0 to 100 against a preferences file that says what titles, keywords, and dealbreakers I care about. Anything at 75 or above lands in the dashboard, and I get a digest email and a phone push only when something new cleared the bar. A staleness sweep re-fetches any listing older than ten days and drops it if the posting is closed or no longer scores.
-                    </p>
-                    <p>
-                        <strong>Apply</strong> is one role at a time. I pick it, the tool drafts a resume and cover letter tailored to that listing from my master resume, and a second pass checks the output against a set of applicant tracking system rules: no placeholders, no invented facts, dates and titles that match the source. Then I read it. When I mark it applied, it logs the application to BigQuery and a sheet and the role leaves the dashboard on its own. Getting that last part right took a real fix: for a while the logger was failing silently, so a reconcile job now checks both the ledger and my Gmail for confirmation emails before it hides anything.
-                    </p>
-                    <p>
-                        <strong>Outreach</strong> is the part that was missing. For every application, the tool looks at who I already know at that company across my connections and a contacts graph I have been building since spring. Each person has a warmth score: a base for how we know each other, plus every interaction we have had, weighted and decayed. Good signals fade on a 120 day half-life, bad ones on 365, so a burned bridge outlasts a good conversation. An eligibility gate runs before anything else, per ask rather than per company, because a referral request can be off the table while a coffee chat is fine. Unknown data fails open so I see it rather than lose it. The warmest people rank first, at most two per company, and a model writes a one line hook for each. The rest of the note is a fixed template that refuses to render with an empty hook, a dollar figure, or a semicolon. Every note lands in my Gmail drafts. Nothing sends until I have read it.
-                    </p>
-                    <p>
-                        The whole thing is about nineteen thousand lines of Python across sixty modules with 273 tests, built in 480 commits since late May. Streamlit for the dashboard, the Gmail API, BigQuery and Sheets for the ledgers, Gemini for the drafting, launchd for the schedule, Playwright for the couple of places a logged in browser is unavoidable.
-                    </p>
-                    <p>
-                        Here is what changed. Same person, same market, same hours.
-                    </p>
-                    <table class="stat-table">
-                        <caption>Counted from my own ledgers on August 28. The logger was fixed on the 25th, so a batch of earlier August applications were confirmed into it on the 27th. Seventy two in the month is right; do not read it as seventy two in a week.</caption>
-                        <thead>
-                            <tr><th scope="col">Month</th><th scope="col">Applications</th><th scope="col">Outreach touches</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>May and June</td><td>5</td><td>5</td></tr>
-                            <tr><td>July</td><td>14</td><td>22</td></tr>
-                            <tr><td>August</td><td>72</td><td>111</td></tr>
-                        </tbody>
-                    </table>
-                    <p>
-                        The touches are now mostly email, phone, and text rather than cold LinkedIn messages, which is the channel shift the audit said to make.
-                    </p>
-                    <p>
-                        I do not have the new role yet. What I have is a search that runs at a volume I could not sustain by hand, with my attention spent on the people rather than the portals. I am considering opening up a cleaned-up version of the tool if there is interest.
-                    </p>
-                </section>
-
                 <section class="timeline-item" id="entry-2026-08-23">
                     <div class="entry-head">
                         <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="14" width="48" height="36" rx="3"/><path d="M8 24h48M8 40h48"/><path d="M16 14v10M24 14v10M32 14v10M40 14v10M48 14v10M16 40v10M24 40v10M32 40v10M40 40v10M48 40v10"/><path d="M28 28v8l7-4Z"/></svg>
@@ -445,28 +388,5 @@
             </div>
         </article>
     </main>
-
-    <dialog class="lightbox" id="lightbox" aria-label="Expanded image">
-        <button class="lightbox-close" type="button" aria-label="Close">&times;</button>
-        <img src="" alt="">
-    </dialog>
-    <script>
-        (function () {
-            var box = document.getElementById('lightbox');
-            if (!box || typeof box.showModal !== 'function') return;
-            var img = box.querySelector('img');
-            function open(src, alt) { img.src = src; img.alt = alt; box.showModal(); }
-            function close() { box.close(); img.src = ''; }
-            document.querySelectorAll('img.zoomable').forEach(function (el) {
-                el.addEventListener('click', function () { open(el.currentSrc || el.src, el.alt); });
-                el.addEventListener('keydown', function (e) {
-                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(el.currentSrc || el.src, el.alt); }
-                });
-            });
-            box.querySelector('.lightbox-close').addEventListener('click', close);
-            img.addEventListener('click', close);
-            box.addEventListener('click', function (e) { if (e.target === box) close(); });
-        })();
-    </script>
 </body>
 </html>
