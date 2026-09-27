@@ -1431,3 +1431,31 @@ figcaption a { color: var(--accent-emerald); }
 .log-grid .timeline-item.wide p,
 .log-grid .timeline-item.wide .stat-table { max-width: 44rem; }
 .log-grid .timeline-item.wide .photo-single { max-width: 34rem; }
+
+/* --- Call-to-action strip (work-im-doing, work-in-detail) --- */
+/* The contact strip, reused as a compact Resume · Email · LinkedIn row at the top
+   and bottom of the long pages. Stays one row on phones: the labels are short. */
+
+.contact-strip.cta-strip {
+    width: fit-content;
+    max-width: 100%;
+    margin: 1.5rem auto;
+}
+
+@media (max-width: 700px) {
+    .contact-strip.cta-strip {
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+        border-radius: 999px;
+        padding: 0.7rem 0.4rem;
+    }
+
+    .contact-strip.cta-strip .item {
+        padding: 0 0.9rem;
+    }
+
+    .contact-strip.cta-strip .item + .item {
+        border-left: 1px solid var(--border-color);
+    }
+}
