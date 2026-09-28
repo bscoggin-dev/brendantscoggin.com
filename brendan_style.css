@@ -1459,3 +1459,168 @@ figcaption a { color: var(--accent-emerald); }
         border-left: 1px solid var(--border-color);
     }
 }
+
+/* --- Week-over-week small multiples + trend callouts (work-im-doing weekly entries) --- */
+/* One card per metric: current value, change vs last week, and every week since the
+   rebuild as a labeled bar. Colors come from the theme tokens so both schemes work. */
+
+.entry-subhead {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin: 2rem 0 0.6rem;
+}
+
+.wow { margin: 1rem 0 0.5rem; }
+
+.wow-group {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 1.2rem 0 0.6rem;
+}
+
+.wow-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+@media (max-width: 1100px) {
+    .wow-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+    .wow-grid { grid-template-columns: minmax(0, 1fr); }
+    .wow-bars { height: 92px; }
+}
+
+#entry-2026-09-26 p a { color: var(--accent-emerald); }
+
+.wow-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 0.95rem 1rem 0.8rem;
+}
+
+.wow-card h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.wow-now {
+    margin: 0.25rem 0 0.7rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.1;
+}
+
+.wow-delta {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+}
+
+.wow-delta.up { color: var(--accent-emerald); }
+
+.wow-bars {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    align-items: end;
+    height: 104px;
+    margin-top: auto;
+}
+
+.wow-bars li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    min-width: 0;
+}
+
+.wow-bar {
+    width: 100%;
+    max-width: 30px;
+    height: calc(var(--h) * 0.56);
+    min-height: 2px;
+    border-radius: 3px 3px 0 0;
+    background: var(--text-muted);
+    opacity: 0.35;
+}
+
+.wow-bars li.now .wow-bar {
+    background: var(--accent-emerald);
+    opacity: 1;
+}
+
+.wow-v {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+}
+
+.wow-bars li.now .wow-v {
+    color: var(--accent-emerald);
+    font-weight: 700;
+}
+
+.wow-w {
+    font-size: 0.66rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    white-space: nowrap;
+}
+
+.wow-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0.9rem 0 0;
+}
+
+.trend-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.6rem 0 1.2rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.trend-list li {
+    background: var(--accent-low-op);
+    border-left: 3px solid var(--accent-emerald);
+    border-radius: 0 12px 12px 0;
+    padding: 0.85rem 1rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+}
+
+.trend-list strong { color: var(--text-primary); }
+
+.trend-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-emerald);
+    border: 1px solid var(--border-hover);
+    border-radius: 999px;
+    padding: 0.05rem 0.5rem;
+    margin-right: 0.5rem;
+    vertical-align: 1px;
+}
