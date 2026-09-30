@@ -74,20 +74,6 @@ body {
     min-height: 100vh;
 }
 
-/* Inline text links in body copy. :where() keeps specificity at one element, so every
-   class-based link style (nav, CTA, cards, skip links) still wins. */
-:where(p, li, figcaption, td) a:where(:not([class])) {
-    color: var(--accent-emerald);
-    text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--accent-emerald) 45%, transparent);
-    text-underline-offset: 3px;
-}
-
-:where(p, li, figcaption, td) a:where(:not([class])):hover {
-    color: var(--accent-teal);
-    text-decoration-color: currentColor;
-}
-
 /* --- Layout Structure --- */
 
 /* Main Landing / Hero (index.html) */
