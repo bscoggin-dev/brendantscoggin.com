@@ -1093,8 +1093,8 @@ figcaption a { color: var(--accent-emerald); }
     align-items: stretch;
 }
 
-/* The home page shows five cards as 3 + 2, so mac-maid sits directly beside
-   Judge Moody and the Skeptic Committee. work.html keeps two columns for its longer list. */
+/* The home page shows up to six cards, newest first, three to a row.
+   work.html keeps two columns for its longer list. */
 .work-grid.is-featured {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
