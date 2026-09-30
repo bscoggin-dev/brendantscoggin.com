@@ -28,6 +28,7 @@ Git already records every commit. This directory answers a different question:
 | v5 | 2026-08-27 | hiring reader — work before contact details | Hero tightened after peer review: name on one line, asterisk dropped, ~430px of vertical air removed, eyebrow renamed "Work I'm proud of". Headshot left for a new photo. |
 | v6 | 2026-08-28 | hiring reader — work before contact details | Live page + stylesheet as deployed right before the Job4you long-form entry (click-to-expand diagram, metrics table). Cut for a one-copy revert. |
 | v7 | 2026-09-18 | hiring reader — work before contact details | Hosted resume PDF swapped for the 4-page career-ops master (AA completed wording); resume.html unchanged. Snapshot holds the outgoing 3-page PDF. |
+| v8 | 2026-09-30 | hiring reader — work before contact details | Live work-im-doing + gtag-init right before the skeptic committee entry (public repo link, `github_repo_click` event). Cut for a one-copy revert. |
 
 ## Note on public reachability
 

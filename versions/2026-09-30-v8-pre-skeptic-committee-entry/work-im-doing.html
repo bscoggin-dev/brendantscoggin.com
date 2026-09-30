@@ -44,56 +44,6 @@
             <div class="content-block">
 
                 <div class="log-grid">
-                <section class="timeline-item wide" id="entry-2026-09-30">
-                    <div class="entry-head">
-                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="30" cy="38" rx="20" ry="9"/><circle cx="16" cy="22" r="3.5"/><circle cx="30" cy="20" r="3.5"/><circle cx="44" cy="22" r="3.5"/><circle cx="14" cy="54" r="3.5"/><circle cx="46" cy="54" r="3.5"/><rect x="52" y="10" width="8" height="20" rx="1"/><path d="M56 30v8"/></svg>
-                        <div>
-                            <span class="vlog-date-tag">September 30, 2026</span><span class="vlog-label">career</span>
-                            <h3>The skeptic committee, and why I kept it</h3>
-                        </div>
-                    </div>
-                    <p>
-                        This is the longer version of a <a href="https://www.linkedin.com/in/brendantscoggin" target="_blank" rel="noopener">post I put on LinkedIn</a>. It started with two videos from Mo Bitar on his channel Less Bitter, <a href="https://youtu.be/dyEpDobnkmA" target="_blank" rel="noopener">"Opus 5.5 is disturbing"</a> and <a href="https://youtu.be/jDG7L5HuBnk" target="_blank" rel="noopener">"I talked to 50 people building with AI. It's a mess."</a> His advice to solo builders is to keep things simple. Fewer rules files, a fresh conversation for each task, work on main, and no big multi-agent setups. It got me thinking about how I use Claude, so I had Claude compare my setup against his list.
-                    </p>
-                    <h4 class="entry-subhead">What I was doing well</h4>
-                    <ul class="trend-list">
-                        <li>Running Opus at the highest effort setting, which matches his "no lower than Opus" advice.</li>
-                        <li>Adding most of my rules after something actually went wrong, each one dated to the incident.</li>
-                        <li>Starting each session from live data (calendar, Gmail, BigQuery) instead of notes an earlier session wrote.</li>
-                    </ul>
-                    <h4 class="entry-subhead">What I was doing poorly</h4>
-                    <ul class="trend-list">
-                        <li>One build session ran from September 3 to September 26 and was compacted 57 times.</li>
-                        <li>A feature branch had quietly become my real main, 108 commits ahead of it.</li>
-                        <li>A long handoff paragraph at the bottom of my rules file loaded into every session and kept going stale.</li>
-                    </ul>
-                    <p>
-                        So I merged everything back to main and made working on main a rule. I cut my rules file from 165 lines to 110 and replaced the handoff paragraph with a single line. I also built a /wrap command that saves what matters at the end of a session, which makes starting a fresh conversation for each task easy.
-                    </p>
-                    <p>
-                        The one thing I kept on purpose is my skeptic committee, and it is exactly the kind of multi-agent setup he says to drop. I kept it because LLMs lean positive. They tend to agree with you and tell you the plan is solid. This comparison is a good example. Claude's first answer said my setup mostly fit Mo's advice and I only needed to try two things. When I ran that answer through the committee, it found I was doing about 7 of the 10 things he says to stop. Mo says in the first video that "skepticism should be the default stance," and that is what the committee is for.
-                    </p>
-                    <div class="photo-single">
-                        <figure>
-                            <img class="zoomable" src="media/2026-09-30-skeptic-committee.png" alt="The skeptic committee drawn as a meeting. Five reviewers sit around a table, each with a sheet describing their lens: Seat 1 correctness, will it work as written. Seat 2 semantics, does it match what the data means. Seat 3 data, do the numbers re-run from source. Seat 4 test quality, would a test catch a real break. Seat 5 value, is it worth doing at all. The manager stands at the head of the table at a whiteboard listing its job: read the original first and form its own view, rule on every serious finding as upheld, overstated or refuted, find what all five missed, name the exact changes, and make one go or no-go call." loading="lazy">
-                            <figcaption>The committee as a meeting. The gray line on each sheet is that seat's lens when it reviews an analysis instead of a plan. Click it to see it full size.</figcaption>
-                        </figure>
-                    </div>
-                    <h4 class="entry-subhead">How it works</h4>
-                    <p>
-                        Five reviewers each read the plan or analysis on their own, at the same time, without seeing each other's work. Each one has a single lens. For a build plan that is correctness, meaning, data, test quality, and whether the work is worth doing at all. For an analysis it is inference, data integrity, method, premise, and value. Each reviewer is told that a manager will check their findings, so a made-up problem counts against them.
-                    </p>
-                    <p>
-                        The manager is not part of the panel. It reads the original first and forms its own view before it looks at anything the reviewers said. Then it rules on every serious finding as upheld, overstated or refuted, and names the reviewer behind any false alarm. It looks for anything all five missed, writes out the exact changes to make, and makes one go or no-go call.
-                    </p>
-                    <h4 class="entry-subhead">Why it is set up this way</h4>
-                    <p>
-                        A manager that just summarizes the panel ends up inheriting its mistakes. Reviewers have a bias of their own too, since they want to look useful, and sometimes one will raise a problem that isn't really there. A manager whose job is to challenge the panel catches both. The structure now lives in code, and the workflow will not run without five distinct seats, because Claude got it wrong twice in one day when the rules were only written down. A run costs around 600,000 tokens, so I save it for decisions that are hard to undo. Day to day, a single reviewer agent does the checking.
-                    </p>
-                    <p>
-                        The code is public on <a href="https://github.com/bscoggin-dev/skeptic-committee" target="_blank" rel="noopener">GitHub</a> if you want to look at it or try it yourself. If you are hiring a technical program manager, or want to talk through how the committee works, please let me know :)
-                    </p>
-                </section>
                 <section class="timeline-item wide" id="entry-2026-09-26">
                     <div class="entry-head">
                         <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="52" height="52" rx="4"/><path d="M14 50h36M19 50V40M28 50V32M37 50V36M46 50V22"/><path d="M19 32l9-8 9 4 9-12"/><circle cx="46" cy="16" r="1.5"/></svg>

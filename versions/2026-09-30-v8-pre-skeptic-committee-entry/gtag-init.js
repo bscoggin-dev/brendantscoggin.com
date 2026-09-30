@@ -14,7 +14,6 @@ gtag('config', 'G-NPWZK8VW4K');
         if (/linkedin\.com\/(?:feed\/update|posts)\//i.test(href)) return 'linkedin_post_click';
         if (/\.pdf(?:[?#]|$)/i.test(href)) return 'resume_pdf_download';
         if (/(?:^|\/)resume\.html(?:[?#]|$)/i.test(href)) return 'resume_open';
-        if (/github\.com\/bscoggin-dev\//i.test(href)) return 'github_repo_click';
         return null;
     }
 
