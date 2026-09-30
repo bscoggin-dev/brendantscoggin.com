@@ -30,6 +30,7 @@ Git already records every commit. This directory answers a different question:
 | v7 | 2026-09-18 | hiring reader — work before contact details | Hosted resume PDF swapped for the 4-page career-ops master (AA completed wording); resume.html unchanged. Snapshot holds the outgoing 3-page PDF. |
 | v8 | 2026-09-30 | hiring reader — work before contact details | Live work-im-doing + gtag-init right before the skeptic committee entry (public repo link, `github_repo_click` event). Cut for a one-copy revert. |
 | v9 | 2026-09-30 | hiring reader — work before contact details | Stylesheet before the site-wide text-link style (inline links were browser-default dark blue). Cut for a one-copy revert. |
+| v10 | 2026-09-30 | hiring reader — work before contact details | Home page before the fifth featured card (Skeptic Committee); featured grid 4 columns → 3. Cut for a one-copy revert. |
 
 ## Note on public reachability
 
