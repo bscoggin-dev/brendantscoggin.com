@@ -31,6 +31,7 @@ Git already records every commit. This directory answers a different question:
 | v8 | 2026-09-30 | hiring reader — work before contact details | Live work-im-doing + gtag-init right before the skeptic committee entry (public repo link, `github_repo_click` event). Cut for a one-copy revert. |
 | v9 | 2026-09-30 | hiring reader — work before contact details | Stylesheet before the site-wide text-link style (inline links were browser-default dark blue). Cut for a one-copy revert. |
 | v10 | 2026-09-30 | hiring reader — work before contact details | Home page before the fifth featured card (Skeptic Committee); featured grid 4 columns → 3. Cut for a one-copy revert. |
+| v11 | 2026-10-02 | hiring reader — work before contact details | Live work-im-doing + stylesheet right before the October 2 weekly entry (a week of using only the board, two images, six-week grid). Cut for a one-copy revert. |
 
 ## Note on public reachability
 

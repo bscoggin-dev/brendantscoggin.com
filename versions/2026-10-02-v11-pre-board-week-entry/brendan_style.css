@@ -1558,9 +1558,6 @@ figcaption a { color: var(--accent-emerald); }
     margin-top: auto;
 }
 
-.wow-bars.w6 { grid-template-columns: repeat(6, 1fr); gap: 4px; }
-.wow-bars.w6 .wow-w { font-size: 0.58rem; }
-
 .wow-bars li {
     display: flex;
     flex-direction: column;
