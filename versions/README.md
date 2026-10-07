@@ -32,6 +32,7 @@ Git already records every commit. This directory answers a different question:
 | v9 | 2026-09-30 | hiring reader — work before contact details | Stylesheet before the site-wide text-link style (inline links were browser-default dark blue). Cut for a one-copy revert. |
 | v10 | 2026-09-30 | hiring reader — work before contact details | Home page before the fifth featured card (Skeptic Committee); featured grid 4 columns → 3. Cut for a one-copy revert. |
 | v11 | 2026-10-02 | hiring reader — work before contact details | Live work-im-doing + stylesheet right before the October 2 weekly entry (a week of using only the board, two images, six-week grid). Cut for a one-copy revert. |
+| v13 | 2026-10-06 | hiring reader — work before contact details | Live work-im-doing right before the October 6 entry (the GoReachAgentic sign-up page, long version of the LinkedIn post, one image). Cut for a one-copy revert. |
 
 ## Note on public reachability
 
