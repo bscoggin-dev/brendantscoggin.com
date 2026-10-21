@@ -1004,6 +1004,7 @@ figcaption a { color: var(--accent-emerald); }
 
 .hero-photo {
     grid-column: 1;
+    grid-row: 2;
     width: 100%;
     max-width: 340px;
     aspect-ratio: 1 / 1;
@@ -1015,6 +1016,7 @@ figcaption a { color: var(--accent-emerald); }
 
 .hero-copy {
     grid-column: 2;
+    grid-row: 2 / span 2;
     align-self: start;
     display: flex;
     flex-direction: column;
@@ -1046,6 +1048,33 @@ figcaption a { color: var(--accent-emerald); }
     margin: 0.6rem 0 0 0;
 }
 
+.hero-badges {
+    grid-column: 1;
+    grid-row: 3;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    /* the badge PNGs carry ~8px of transparent padding; pull it back so the
+       hexagon edge lines up with the photo edge */
+    margin: 0 0 0 -8px;
+}
+
+.hero-badges a {
+    display: block;
+    line-height: 0;
+}
+
+.hero-badges img {
+    width: 120px;
+    height: 120px;
+    transition: transform 0.2s ease;
+}
+
+.hero-badges a:hover img,
+.hero-badges a:focus-visible img {
+    transform: translateY(-2px);
+}
+
 .hero .contact-strip {
     grid-column: 1 / -1;
     margin-top: 2.25rem;
@@ -1057,8 +1086,19 @@ figcaption a { color: var(--accent-emerald); }
     }
     .hero-display,
     .hero-photo,
-    .hero-copy {
+    .hero-copy,
+    .hero-badges {
         grid-column: 1;
+        grid-row: auto;
+    }
+    .hero-badges {
+        order: 1;
+    }
+    .hero-copy {
+        order: 2;
+    }
+    .hero .contact-strip {
+        order: 3;
     }
     .hero-photo {
         max-width: 100%;
