@@ -1070,6 +1070,12 @@ figcaption a { color: var(--accent-emerald); }
     transition: transform 0.2s ease;
 }
 
+.hero-badges img.cert-wide {
+    width: auto;
+    height: 120px;
+    align-self: center;
+}
+
 .hero-badges a:hover img,
 .hero-badges a:focus-visible img {
     transform: translateY(-2px);
