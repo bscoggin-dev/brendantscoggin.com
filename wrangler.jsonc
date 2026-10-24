@@ -1,0 +1,22 @@
+{
+  // Static-assets Worker for brendantscoggin.com. No Worker code: Cloudflare serves the files.
+  // Deploy with scripts/deploy.sh, which uploads an export of the committed files.
+  // Rollback: GitHub Pages stays enabled as the standby (see README.md).
+  "name": "brendantscoggin-site",
+  "compatibility_date": "2026-10-23",
+  // No public workers.dev or preview addresses; the site is reached only on its own hostnames.
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    // deploy.sh passes --assets with a temp export, which replaces this path. A bare
+    // `wrangler deploy` fails here on purpose, so nothing but the export is ever uploaded.
+    "directory": "./.not-deployed-use-scripts-deploy-sh",
+    "html_handling": "none"
+  },
+  "routes": [
+    // The apex. www is a proxied record plus a redirect rule (zone Single Redirect) to the apex.
+    { "pattern": "brendantscoggin.com", "custom_domain": true }
+    // Staging: to stage a change, add { "pattern": "stage.brendantscoggin.com", "custom_domain": true }
+    // here, run scripts/deploy.sh, then check with scripts/parity.sh and BASE_URL=... npm run verify.
+  ]
+}
