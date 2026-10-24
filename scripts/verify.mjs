@@ -3,7 +3,7 @@
 //   1. no console errors
 //   2. every internal link resolves, and every #fragment exists in its target
 //   3. the page is actually styled (catches a missing/broken stylesheet)
-//   4. no horizontal overflow at 375px
+//   4. no horizontal overflow at 320px and 375px (also content clipped past the right edge)
 // Screenshots land in .verify-shots/ for eyeballing.
 // Set BASE_URL=https://host to run the rendered checks (1, 3, 4) against a deployed site
 // instead of the local files; the page must also answer 200 at that URL.
@@ -29,7 +29,7 @@ const DEFAULT_PAGES = [
 const BASE = process.env.BASE_URL ? process.env.BASE_URL.replace(/\/+$/, '') : null;
 const pages = process.argv.slice(2).length ? process.argv.slice(2) : DEFAULT_PAGES;
 const SCHEMES = ['dark', 'light'];
-const WIDTHS = [375, 1440];
+const WIDTHS = [320, 375, 1440];
 
 const failures = [];
 const fail = (msg) => { failures.push(msg); console.error('FAIL ' + msg); };
@@ -101,9 +101,18 @@ async function checkRendered(browser, pageFile, scheme, width) {
   const unstyled = bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent';
   if (unstyled) fail(`${label}: page is UNSTYLED (body background is ${bg})`);
 
-  if (width === 375) {
-    const overflow = await page.evaluate(() =>
-      document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  if (width <= 375) {
+    // scrollWidth alone misses content that an ancestor clips (that is how a 332px-wide hero
+    // sat unnoticed on a 320px screen), so also look at where every element's right edge lands.
+    const overflow = await page.evaluate(() => {
+      const root = document.documentElement;
+      let maxRight = 0;
+      for (const el of document.body.querySelectorAll('*')) {
+        const r = el.getBoundingClientRect();
+        if (r.width > 0 && r.height > 0) maxRight = Math.max(maxRight, r.right);
+      }
+      return Math.max(root.scrollWidth - root.clientWidth, Math.ceil(maxRight) - root.clientWidth);
+    });
     if (overflow > 1) fail(`${label}: horizontal overflow of ${overflow}px`);
   }
 

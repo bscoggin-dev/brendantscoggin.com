@@ -6,6 +6,7 @@
     --bg-dark: #090d16;
     --bg-card: rgba(22, 28, 45, 0.6);
     --bg-card-hover: rgba(30, 41, 59, 0.7);
+    --bg-nav: rgba(9, 13, 22, 0.85);
     --border-color: rgba(255, 255, 255, 0.06);
     --border-hover: rgba(16, 185, 129, 0.3);
     
@@ -38,6 +39,7 @@
         --bg-dark: #f8fafc;
         --bg-card: rgba(255, 255, 255, 0.8);
         --bg-card-hover: rgba(255, 255, 255, 0.95);
+        --bg-nav: rgba(248, 250, 252, 0.88);
         --border-color: rgba(0, 0, 0, 0.08);
         --border-hover: rgba(16, 185, 129, 0.5);
         
@@ -60,7 +62,18 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    /* Tells form controls, scrollbars and the pre-paint canvas to follow the same
+       light/dark choice as the tokens above (Chrome, Safari, Firefox, Android). */
+    color-scheme: light dark;
+    /* Stops iOS Safari (landscape) and Android Chrome from inflating text on their own. */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
@@ -72,6 +85,18 @@ body {
     color: var(--text-secondary);
     line-height: 1.6;
     min-height: 100vh;
+    /* Mobile browsers resize the viewport as the address bar slides; dvh tracks it.
+       Browsers without dvh keep the 100vh line above. */
+    min-height: 100dvh;
+    /* A long email address or URL wraps instead of widening the page. */
+    overflow-wrap: break-word;
+}
+
+/* Safety net so no image can push a layout wider than its container. Class rules
+   with their own width or height are more specific and still win. */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Inline text links in body copy. :where() keeps specificity at one element, so every
@@ -79,6 +104,9 @@ body {
 :where(p, li, figcaption, td) a:where(:not([class])) {
     color: var(--accent-emerald);
     text-decoration: underline;
+    /* Fallback first: browsers without color-mix() (Android WebView before Chrome 111,
+       Safari before 16.2) drop the line below and keep this one. */
+    text-decoration-color: currentColor;
     text-decoration-color: color-mix(in srgb, var(--accent-emerald) 45%, transparent);
     text-underline-offset: 3px;
 }
@@ -478,7 +506,7 @@ body {
         top: 0;
         left: 0;
         width: 100%;
-        background-color: rgba(9, 13, 22, 0.85);
+        background-color: var(--bg-nav);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border-bottom: 1px solid var(--border-color);
@@ -510,7 +538,7 @@ body {
         top: 0;
         left: 0;
         width: 100%;
-        background-color: rgba(9, 13, 22, 0.85);
+        background-color: var(--bg-nav);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border-bottom: 1px solid var(--border-color);
@@ -982,7 +1010,12 @@ figcaption a { color: var(--accent-emerald); }
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 340px minmax(0, 1fr);
+    /* The text column is only as wide as its paragraphs (46ch at their 0.92rem size). The old
+       minmax(0, 1fr) made it fill the box, leaving ~270px of empty column to the right of the
+       text, so the visible content sat left of centre. Sizing it to the text and centring the
+       tracks puts the photo-plus-text block in the middle of the window. */
+    grid-template-columns: 340px minmax(0, calc(46ch * 0.92));
+    justify-content: center;
     column-gap: var(--space-block);
     row-gap: 1.5rem;
     align-items: start;
@@ -1062,12 +1095,17 @@ figcaption a { color: var(--accent-emerald); }
 .hero-badges a {
     display: block;
     line-height: 0;
+    /* up to 108px each, shrinking together when the column is narrower than 340px */
+    flex: 0 1 108px;
+    min-width: 0;
 }
 
 .hero-badges img {
     /* three badges must fit the 340px photo column */
-    width: 108px;
-    height: 108px;
+    width: 100%;
+    max-width: 108px;
+    height: auto;
+    aspect-ratio: 1 / 1;
     transition: transform 0.2s ease;
 }
 
@@ -1083,7 +1121,9 @@ figcaption a { color: var(--accent-emerald); }
 
 @media (max-width: 760px) {
     .hero {
-        grid-template-columns: 1fr;
+        /* minmax(0, 1fr), not 1fr: a bare 1fr track cannot shrink below its widest
+           child, so the badge row held the whole hero at 332px on 320-360px phones. */
+        grid-template-columns: minmax(0, 1fr);
     }
     .hero-display,
     .hero-photo,
@@ -1420,6 +1460,7 @@ figcaption a { color: var(--accent-emerald); }
     background: transparent;
     max-width: min(96vw, 1400px);
     max-height: 96vh;
+    max-height: 96dvh;
     overflow: visible;
 }
 .lightbox::backdrop { background: rgba(9, 13, 22, 0.88); }
@@ -1427,6 +1468,7 @@ figcaption a { color: var(--accent-emerald); }
     display: block;
     width: 100%;
     max-height: 96vh;
+    max-height: 96dvh;
     object-fit: contain;
     border-radius: 12px;
     cursor: zoom-out;
@@ -1681,4 +1723,148 @@ figcaption a { color: var(--accent-emerald); }
     padding: 0.05rem 0.5rem;
     margin-right: 0.5rem;
     vertical-align: 1px;
+}
+
+
+/* ============================================================
+   CROSS-BROWSER AND PHONE HARDENING
+   Chrome, Firefox and Safari on desktop; iOS Safari and Android Chrome on phones.
+   Everything here is a standards feature with a safe fallback, so a browser that does
+   not understand a line just ignores it. Kept last so it can adjust earlier rules.
+   ============================================================ */
+
+/* Gradient headings: background-clip:text plus a transparent fill. If a browser lacks
+   background-clip:text, or Windows High Contrast / forced colors is on, the heading would
+   be invisible, so fall back to a plain colour. */
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+    .hero-title,
+    .page-section h1,
+    #vlog-title {
+        background: none;
+        color: var(--accent-emerald);
+        -webkit-text-fill-color: currentColor;
+    }
+}
+
+@media (forced-colors: active) {
+    .hero-title,
+    .page-section h1,
+    #vlog-title {
+        background: none;
+        color: CanvasText;
+        -webkit-text-fill-color: currentColor;
+    }
+}
+
+/* Reduced motion: the OS setting on macOS, iOS, Android and Windows. Drops the entry
+   animations, hover lifts and smooth scrolling for people who ask for less movement. */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Touch screens: :hover sticks after a tap on iOS Safari and Android Chrome, leaving a
+   card lifted or an image scaled until the next tap. Lifts only apply where a real
+   pointer can hover. background-attachment:fixed is ignored by iOS Safari and janky on
+   Android, so phones and tablets scroll the glow with the page instead. */
+@media (hover: none) {
+    .project-item:hover,
+    .experience-item:hover,
+    .timeline-item:hover,
+    .work-card:hover,
+    .vlog-media-mock:hover,
+    .doing-list li:hover,
+    .skills-list li:hover,
+    .values-list li:hover,
+    .profile-photo:hover,
+    .hero-badges a:hover img {
+        transform: none;
+    }
+
+    body {
+        background-attachment: scroll;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+
+    /* The sticky nav covers the top of the screen, so an anchor link such as
+       work-im-doing.html#entry-2026-09-30 would land underneath it. */
+    html {
+        scroll-padding-top: 9rem;
+    }
+
+    /* Tap targets: 40px tall, up from 23-29px, per WCAG 2.5.8 and the Apple and Android
+       touch guidance. Inline links inside paragraphs are exempt and are left alone. */
+    .home-nav a,
+    .top-nav a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 40px;
+    }
+
+    .home-nav ul,
+    .top-nav ul {
+        row-gap: 0;
+    }
+
+    .contact-strip .item,
+    .contact-strip.cta-strip .item {
+        min-height: 40px;
+    }
+
+    .work-card-repo,
+    .work-more {
+        padding-block: 0.7rem;
+    }
+
+    .work-card-repo {
+        margin-top: 0.8rem;
+    }
+}
+
+/* A phone is narrow enough that "brendantscoggin@gmail.com" with its icon and padding
+   can exceed the screen at 320px. Let items wrap instead of forcing the page wider. */
+@media (max-width: 700px) {
+    .contact-strip .item {
+        white-space: normal;
+        min-width: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+    }
+
+    .contact-strip:not(.cta-strip) {
+        max-width: 100%;
+    }
+}
+
+/* Long unbroken titles (the bvlogythingy heading runs "bvlogythingy...I" together) set the
+   width of an inline-block heading, so it ran 28px past a 320px screen. overflow-wrap:
+   anywhere lets the heading's minimum width shrink as well, not just its wrapping. */
+.page-section h1,
+#vlog-title {
+    overflow-wrap: anywhere;
+}
+
+/* The three-column stats table cannot fit 320px at its desktop type size; tighten the
+   padding and the header type so it stays inside its card without needing a scroller. */
+@media (max-width: 480px) {
+    .stat-table th,
+    .stat-table td {
+        padding: 0.5rem 0.35rem;
+    }
+
+    .stat-table thead th {
+        font-size: 0.68rem;
+        letter-spacing: 0;
+    }
 }
