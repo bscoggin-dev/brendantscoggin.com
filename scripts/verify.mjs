@@ -5,6 +5,8 @@
 //   3. the page is actually styled (catches a missing/broken stylesheet)
 //   4. no horizontal overflow at 375px
 // Screenshots land in .verify-shots/ for eyeballing.
+// Set BASE_URL=https://host to run the rendered checks (1, 3, 4) against a deployed site
+// instead of the local files; the page must also answer 200 at that URL.
 import { chromium } from 'playwright';
 import { readFileSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -24,6 +26,7 @@ const DEFAULT_PAGES = [
   'tools/judge-moody/index.html',
 ];
 
+const BASE = process.env.BASE_URL ? process.env.BASE_URL.replace(/\/+$/, '') : null;
 const pages = process.argv.slice(2).length ? process.argv.slice(2) : DEFAULT_PAGES;
 const SCHEMES = ['dark', 'light'];
 const WIDTHS = [375, 1440];
@@ -69,7 +72,7 @@ async function checkRendered(browser, pageFile, scheme, width) {
   const externalFailures = [];
   page.on('requestfailed', (r) => {
     const url = r.url();
-    if (url.startsWith('file://')) {
+    if (url.startsWith('file://') || (BASE && url.startsWith(BASE + '/'))) {
       errors.push(`missing local asset: ${url}`);
     } else {
       externalFailures.push(`${new URL(url).host} (${(r.failure() || {}).errorText})`);
@@ -83,9 +86,11 @@ async function checkRendered(browser, pageFile, scheme, width) {
   });
   page.on('pageerror', (e) => errors.push(String(e)));
 
-  await page.goto(pathToFileURL(path.join(ROOT, pageFile)).href, { waitUntil: 'load' });
+  const target = BASE ? `${BASE}/${pageFile}` : pathToFileURL(path.join(ROOT, pageFile)).href;
+  const response = await page.goto(target, { waitUntil: 'load' });
 
   const label = `${pageFile} [${scheme} ${width}px]`;
+  if (BASE && response.status() !== 200) errors.push(`${target} answered ${response.status()}`);
 
   if (errors.length) fail(`${label}: ${errors.join(' | ')}`);
   if (externalFailures.length) {
