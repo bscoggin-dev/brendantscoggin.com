@@ -50,6 +50,71 @@
             <div class="content-block">
 
                 <div class="log-grid">
+                <section class="timeline-item wide" id="entry-2026-10-29">
+                    <div class="entry-head">
+                        <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="14" width="22" height="30" rx="3"/><rect x="38" y="20" width="20" height="34" rx="4"/><path d="M28 24h10M34 20l4 4-4 4M38 40H28M32 36l-4 4 4 4"/></svg>
+                        <div>
+                            <span class="vlog-date-tag">October 29, 2026</span><span class="vlog-label">career</span>
+                            <h3>Pairing Claude Code with Instinct for my job search</h3>
+                        </div>
+                    </div>
+                    <p>
+                        This is the longer version of a post I put on LinkedIn. Here I wanted to write down what we actually built and what I learned from testing it.
+                    </p>
+                    <div class="photo-single">
+                        <figure>
+                            <img class="zoomable" src="media/2026-10-29-claude-instinct.png" alt="The first real task, a careers scan of 5 companies with 743 listings, done two ways. Claude reading the titles and links of every listing itself: 22,970 tokens. Claude reading a summary of Instinct's reply: 454 tokens, about 2% of the tokens, and with Claude's checks under a fifth of the cost, an estimate. All 16 roles it found checked out on the live job boards. On the right, a text thread: my request asking Instinct to check 5 companies' careers sites for program manager roles in the Bay Area or remote US, which I send myself, and Instinct's trimmed reply listing roles at Company A, Company B and Company C, 16 roles in all. Footer: my resume never goes to Instinct." loading="lazy">
+                            <figcaption>The first real task done two ways. On the left is what it costs Claude to read just the titles and links of every listing itself compared to reading a summary of Instinct's reply. On the right is a trimmed version of the request I sent and Instinct's reply, with the company names left out. Click it to see it full size.</figcaption>
+                        </figure>
+                    </div>
+                    <h4 class="entry-subhead">Why try this</h4>
+                    <p>
+                        Most of what my job search tool does is reading. It reads careers pages, job descriptions and my email, and most of that reading only produces a short answer at the end. When Claude does that reading itself, it spends tokens on every page. Instinct is a personal AI assistant I have an invite to. You text it, and it does the work on its own computer in the cloud. So the question was whether I could hand Instinct the slow reading and have Claude only read what comes back.
+                    </p>
+                    <h4 class="entry-subhead">Testing it by hand first</h4>
+                    <p>
+                        Before writing any code, I had Claude write five test tasks and I pasted them into Instinct myself. One was a scan of ten companies' careers pages for program manager roles. One was a company brief sent back by email. One was a strict format test, one was a short job description to summarize, and one asked it to look up twenty-five companies at once.
+                    </p>
+                    <p>
+                        All five came back close to the format we asked for. Claude checked eleven of Instinct's claims against the live sources and all eleven matched. I had pasted all five as one message, and it answered each one separately without mixing them up.
+                    </p>
+                    <p>
+                        The one real problem was my copy and paste. Two of the five prompts reached Instinct with words missing, and the twenty-five-company task arrived listing only twenty-three. When Claude looked at the message I had actually sent, the words were already gone, so it was the copy out of my terminal and not Instinct.
+                    </p>
+                    <h4 class="entry-subhead">The script in the middle</h4>
+                    <p>
+                        I then had Claude write a small script that sits between the two of them. Before building it we read Instinct's terms of service. They don't allow bots or any other automated process that accesses the service, and it's for personal use only. So the script never sends anything itself and never touches Instinct's service. It puts the exact request on my clipboard and opens the conversation, and I press Enter. When I have several requests I send them together as one message. The script also caps me at ten requests a day, and I only use it for my own job search.
+                    </p>
+                    <p>
+                        After that everything is local. The script reads Instinct's reply from the Messages app on my Mac, puts the pieces of a long reply back together, flags anything that looks like an instruction aimed at an AI (web pages can hide those), and saves the result to a file. Claude reads a short summary of the reply instead of the whole thing.
+                    </p>
+                    <p>
+                        On the first real task, a scan of five companies with 743 listings between them, reading that summary cost Claude 454 tokens. Just reading the titles, locations and links of every listing itself would have cost at least 22,970, so the summary was about 2% of that. Checking Instinct's answer against the live job boards adds a few thousand more tokens by my estimate, which still puts the whole thing under a fifth of the cost. All 16 roles it found on that scan checked out.
+                    </p>
+                    <p>
+                        In a later test I emailed Instinct a request instead of texting it. It texted me first to ask whether the email was really from me, and only answered after I said yes.
+                    </p>
+                    <p>
+                        We also found a bug I would not have guessed. When Instinct reacted to one of my requests with an emoji, the reaction repeated my whole request, including the words the script was looking for. So the script decided the task was answered before Instinct had started. It ignores reactions now.
+                    </p>
+                    <h4 class="entry-subhead">Where the jobs go</h4>
+                    <p>
+                        Until today, anything Instinct found sat in a file. As of this afternoon, roles it finds go into the same queue as every other job the tool sees, and they get scored the same way. The ones that pass are set up to get application materials built overnight and wait for me on my own job board. I review every one before I submit.
+                    </p>
+                    <p>
+                        From a second scan, four roles went into the queue on the first run. Two were new to my board, and two were ones I had already applied to, so the tool hid those automatically.
+                    </p>
+                    <p>
+                        Instinct also fetched full job descriptions for postings where the tool only had the job alert email and not the posting itself, so those can be built from the real posting.
+                    </p>
+                    <h4 class="entry-subhead">What stays on my Mac</h4>
+                    <p>
+                        I never give Instinct my resume or application forms. Writing the application materials, filling forms and anything that sends a message all stay with the tool on my Mac. Instinct reads public pages and my email, and it doesn't send anything on my behalf. Everything it sends back is screened, and Claude spot-checks it before it's used.
+                    </p>
+                    <p>
+                        Next I want to point it at the companies my tool can't reach on its own, and at the research that goes into each application.
+                    </p>
+                </section>
                 <section class="timeline-item wide" id="entry-2026-10-06">
                     <div class="entry-head">
                         <svg class="deco-emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="7"/><circle cx="12" cy="14" r="4"/><circle cx="52" cy="14" r="4"/><circle cx="12" cy="50" r="4"/><circle cx="52" cy="50" r="4"/><path d="M15 17l12 10M49 17L37 27M15 47l12-10M49 47L37 37"/></svg>
