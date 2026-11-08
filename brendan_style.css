@@ -1868,3 +1868,205 @@ figcaption a { color: var(--accent-emerald); }
         letter-spacing: 0;
     }
 }
+
+/* --- Contact page (contact.html) --- */
+/* A glass card holding the form, then the "Thankyou!" card with the animal photo. */
+
+.contact-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: clamp(1.25rem, 4vw, 2.25rem);
+    box-shadow: var(--shadow-premium);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    max-width: 640px;
+}
+
+.contact-card[hidden],
+.contact-photo[hidden],
+.contact-error[hidden] {
+    display: none;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-intro {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0 0 1.25rem;
+}
+
+.contact-form label {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin: 0.9rem 0 0.4rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    font: inherit;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.7rem 0.85rem;
+    width: 100%;
+    box-sizing: border-box;
+    transition: var(--transition-smooth);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 9rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-emerald);
+    box-shadow: 0 0 0 3px var(--accent-low-op);
+}
+
+/* Honeypot: off-screen for people, still in the form for bots. */
+.contact-trap {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.contact-error {
+    color: #fca5a5;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+    margin: 0 0 0.5rem;
+}
+
+@media (prefers-color-scheme: light) {
+    .contact-error {
+        color: #b91c1c;
+    }
+}
+
+.contact-turnstile {
+    margin-top: 1.25rem;
+    min-height: 65px; /* reserve room so the buttons do not jump when the widget appears */
+}
+
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.contact-buttons button {
+    flex: 1 1 10rem;
+    font: inherit;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent-emerald), var(--accent-teal));
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.contact-buttons button:hover,
+.contact-buttons button:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px -8px var(--accent-emerald);
+}
+
+.contact-buttons button:focus-visible {
+    outline: 2px solid var(--accent-emerald);
+    outline-offset: 3px;
+}
+
+.contact-buttons button:disabled {
+    opacity: 0.6;
+    cursor: progress;
+    transform: none;
+}
+
+.contact-thanks-title {
+    font-family: 'Space Grotesk', var(--font-sans);
+    font-size: clamp(2rem, 6vw, 2.6rem);
+    font-weight: 700;
+    color: var(--accent-emerald);
+    margin: 0 0 1.25rem;
+}
+
+.contact-photo {
+    margin: 0;
+}
+
+.contact-photo img {
+    display: block;
+    width: 100%;
+    max-width: 512px;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: var(--shadow-premium);
+}
+
+.contact-photo figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.6rem;
+}
+
+.contact-photo figcaption a,
+.contact-again a {
+    color: var(--accent-emerald);
+}
+
+.contact-again {
+    margin: 1.5rem 0 0;
+}
+
+/* "Contact me" link on the home page, between the badges and the contact strip. */
+.contact-me-link {
+    display: inline-block;
+    margin-top: 1.4rem;
+    font-weight: 600;
+    color: var(--accent-emerald);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+}
+
+.contact-me-link:hover,
+.contact-me-link:focus-visible {
+    color: var(--accent-teal);
+}
+
+/* The hero is a grid: give the link its own full-width row, sized to its text and centred,
+   so it does not stretch to the photo column. */
+.hero .contact-me-link {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 2.25rem;
+}
+
+.hero .contact-me-link + .contact-strip {
+    margin-top: 0;
+}
+
+/* On phones the hero reorders its items (badges 1, copy 2, strip 3); keep the link just above the strip. */
+@media (max-width: 760px) {
+    .hero .contact-me-link {
+        order: 3;
+    }
+}

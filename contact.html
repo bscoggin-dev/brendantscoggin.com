@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google.com https://web.archive.org https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://www.google.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NPWZK8VW4K"></script>
+    <script src="gtag-init.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#090d16" media="(prefers-color-scheme: dark)">
+    <meta name="format-detection" content="telephone=no">
+    <title>Contact Me - Brendan Scoggin</title>
+    <meta name="description" content="Send Brendan Scoggin a message, then get a photo of a cat, a dog or an alien as a thank-you.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="brendan_style.css">
+    <!-- contact.js must come first: it defines contactTurnstileLoad, which api.js calls when ready. -->
+    <script src="contact.js" defer></script>
+    <link rel="preconnect" href="https://challenges.cloudflare.com">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&amp;onload=contactTurnstileLoad" defer></script>
+</head>
+<body>
+    <nav class="top-nav" aria-label="Sidebar Navigation">
+        <ul>
+            <li><a href="index.html" id="nav-home">home</a></li>
+            <li><a href="work.html" id="nav-work">work i've done</a></li>
+            <li><a href="work-im-doing.html" id="nav-what-im-doing">work i'm doing <span class="nav-subtitle">(like a bvlogythingy)</span></a></li>
+            <li><a href="resume.html" target="_blank" rel="noopener" id="nav-resume">resume</a></li>
+            <li><a href="https://www.linkedin.com/in/brendantscoggin" target="_blank" rel="noopener" id="nav-linkedin">linkedin</a></li>
+            <li><a href="contact.html" class="active" id="nav-contact" aria-current="page">contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="page-content">
+        <article class="page-section">
+            <h1 id="page-title">contact me</h1>
+
+            <section class="contact-card" id="contact-thanks" hidden aria-live="polite">
+                <p class="contact-thanks-title" id="contact-thanks-title"></p>
+                <figure class="contact-photo" id="contact-photo" hidden>
+                    <img id="contact-photo-img" alt="" width="512" height="512">
+                    <figcaption id="contact-photo-caption"></figcaption>
+                </figure>
+                <p class="contact-again"><a href="contact.html">Send another message</a></p>
+            </section>
+
+            <form class="contact-card contact-form" id="contact-form" method="post" action="/api/contact">
+                <p class="contact-intro">
+                    Leave me a note and I&rsquo;ll get back to you. Then pick your thank-you: a cat, a dog,
+                    or something from much further away.
+                </p>
+                <p class="contact-error" id="contact-error" role="alert" hidden></p>
+
+                <label for="contact-name">Name</label>
+                <input id="contact-name" name="name" type="text" required maxlength="100" autocomplete="name">
+
+                <label for="contact-email">Email</label>
+                <input id="contact-email" name="email" type="email" required maxlength="254" autocomplete="email">
+
+                <label for="contact-subject">Subject</label>
+                <input id="contact-subject" name="subject" type="text" required maxlength="200">
+
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" required maxlength="5000" rows="7"></textarea>
+
+                <div class="contact-trap" aria-hidden="true">
+                    <label for="contact-website">Leave this field empty</label>
+                    <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off">
+                </div>
+
+                <!-- Cloudflare Turnstile human check. data-sitekey is the production key; contact.js
+                     swaps in Cloudflare's always-pass test key on 127.0.0.1 / localhost. -->
+                <div class="contact-turnstile" id="contact-turnstile" data-sitekey="SET-AT-GO-LIVE"></div>
+
+                <div class="contact-buttons">
+                    <button type="submit" name="animal" value="cats">Submit for Cats</button>
+                    <button type="submit" name="animal" value="dogs">Submit for Dogs</button>
+                    <button type="submit" name="animal" value="alien">Submit for Alien!</button>
+                </div>
+            </form>
+        </article>
+    </main>
+</body>
+</html>
