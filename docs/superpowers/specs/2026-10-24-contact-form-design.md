@@ -38,6 +38,7 @@ A contact page for brendantscoggin.com that doubles as a small showcase of his b
 - Fields: name, email, subject (free text, no dropdown), message.
 - Buttons: Submit for Cats, Submit for Dogs, Submit for All! (each submits the message, then shows that animal). Images are photo-realistic.
 - Jev dropped.
+- **2026-11-07, supersedes the "Submit for All!" button:** the third button is **Submit for Alien!** (value `alien`) and shows one of 75 AI-generated alien creatures. There is no "All" pool. The 55 "other animals" images were generated but are not used. Final sets: 58 dogs, 57 cats, 75 aliens (`media/animals/`). Digest recipient: brendantscoggin@gmail.com.
 - Email: scheduled digest, not per message. Cadence set by `set-digest 24`-style command. Messages also saved in the database.
 
 ## Design
