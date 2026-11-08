@@ -16,13 +16,12 @@
     "html_handling": "none",
     "run_worker_first": ["/api/*"]
   },
-  // Contact form messages. database_id is a placeholder until `wrangler d1 create contact-form`
-  // is run at go-live; local `wrangler dev` does not need a real id.
+  // Contact form messages (created 2026-11-08, region WNAM). Local `wrangler dev` uses .wrangler/state.
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "contact-form",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "7fcb4c78-5f36-456f-b3db-206def8ba828",
       "migrations_dir": "migrations"
     }
   ],
