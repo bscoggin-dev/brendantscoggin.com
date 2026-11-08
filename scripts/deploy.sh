@@ -15,11 +15,20 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-export_dir=$(mktemp -d "${TMPDIR:-/tmp}/cf-site.XXXXXX")
-git archive HEAD -- . ':(exclude).gitignore' ':(exclude)CNAME' ':(exclude)wrangler.jsonc' \
-  ':(exclude)scripts/deploy.sh' ':(exclude)scripts/parity.sh' | tar -x -C "$export_dir"
+# The contact form's Turnstile sitekey must be the real one before anything ships.
+if git show HEAD:contact.html 2>/dev/null | grep -q 'data-sitekey="SET-AT-GO-LIVE"'; then
+  echo "contact.html still has the placeholder Turnstile sitekey; not deploying." >&2
+  exit 1
+fi
 
-expected=$(git ls-files | grep -cvxE '\.gitignore|CNAME|wrangler\.jsonc|scripts/deploy\.sh|scripts/parity\.sh')
+export_dir=$(mktemp -d "${TMPDIR:-/tmp}/cf-site.XXXXXX")
+# Worker source, D1 migrations and set-digest are server-side only: wrangler bundles worker/ from
+# "main" in wrangler.jsonc, so none of them are uploaded as public files.
+git archive HEAD -- . ':(exclude).gitignore' ':(exclude)CNAME' ':(exclude)wrangler.jsonc' \
+  ':(exclude)scripts/deploy.sh' ':(exclude)scripts/parity.sh' \
+  ':(exclude)worker' ':(exclude)migrations' ':(exclude)scripts/set-digest.sh' | tar -x -C "$export_dir"
+
+expected=$(git ls-files | grep -cvE '^(\.gitignore|CNAME|wrangler\.jsonc|scripts/deploy\.sh|scripts/parity\.sh|scripts/set-digest\.sh)$|^(worker|migrations)/')
 actual=$(find "$export_dir" -type f | wc -l | tr -d ' ')
 if [ "$expected" != "$actual" ]; then
   echo "Export has $actual files but $expected were expected; not deploying." >&2

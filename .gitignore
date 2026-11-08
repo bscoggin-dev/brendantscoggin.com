@@ -4,3 +4,4 @@ dist/
 drafts/
 .verify-shots/
 .wrangler/
+.dev.vars

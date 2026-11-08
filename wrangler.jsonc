@@ -1,8 +1,10 @@
 {
-  // Static-assets Worker for brendantscoggin.com. No Worker code: Cloudflare serves the files.
+  // Static-assets Worker for brendantscoggin.com. Cloudflare serves the files; Worker code
+  // (worker/index.js) runs only for /api/* (the contact form) and the hourly digest cron.
   // Deploy with scripts/deploy.sh, which uploads an export of the committed files.
   // Rollback: GitHub Pages stays enabled as the standby (see README.md).
   "name": "brendantscoggin-site",
+  "main": "worker/index.js",
   "compatibility_date": "2026-10-23",
   // No public workers.dev or preview addresses; the site is reached only on its own hostnames.
   "workers_dev": false,
@@ -11,8 +13,23 @@
     // deploy.sh passes --assets with a temp export, which replaces this path. A bare
     // `wrangler deploy` fails here on purpose, so nothing but the export is ever uploaded.
     "directory": "./.not-deployed-use-scripts-deploy-sh",
-    "html_handling": "none"
+    "html_handling": "none",
+    "run_worker_first": ["/api/*"]
   },
+  // Contact form messages. database_id is a placeholder until `wrangler d1 create contact-form`
+  // is run at go-live; local `wrangler dev` does not need a real id.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "contact-form",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // Hourly check; the digest itself goes out only when the interval set by set-digest has passed.
+  "triggers": { "crons": ["0 * * * *"] },
+  // Digest email. Locked to one recipient; `wrangler dev` simulates the send and delivers nothing.
+  "send_email": [{ "name": "EMAIL", "destination_address": "brendantscoggin@gmail.com" }],
   "routes": [
     // The apex. www is a proxied record plus a redirect rule (zone Single Redirect) to the apex.
     { "pattern": "brendantscoggin.com", "custom_domain": true }
