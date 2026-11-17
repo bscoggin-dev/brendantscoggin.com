@@ -1183,6 +1183,21 @@ figcaption a { color: var(--accent-emerald); }
     padding: var(--space-section) 2rem;
 }
 
+/* Homepage order is work grid first, then the hero. The work section now
+   clears the absolute .home-nav (the job .landing's 8rem used to do), and
+   the hero drops that clearance so the two sections sit at normal rhythm. */
+.work-section {
+    padding-top: 8rem;
+}
+.work-section + .landing {
+    padding-top: 0;
+}
+@media (max-width: 768px) {
+    .work-section {
+        padding-top: var(--space-section);
+    }
+}
+
 .work-eyebrow {
     font-family: 'Space Grotesk', var(--font-sans);
     font-size: 0.8rem;
