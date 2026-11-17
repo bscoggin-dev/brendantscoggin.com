@@ -945,6 +945,32 @@ img {
     line-height: 1.4;
 }
 
+/* Embedded YouTube players (work-im-doing entries) */
+.video-embed {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-premium);
+    background: #000;
+    margin: 1rem 0 0.4rem;
+}
+.video-embed.wide { aspect-ratio: 16 / 9; }
+.video-embed.tall { aspect-ratio: 9 / 16; }
+.video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-pair {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+.video-pair .video-embed.tall { max-width: 100%; }
+@media (max-width: 640px) {
+    .video-pair { grid-template-columns: 1fr; }
+    .video-pair .video-embed.tall { width: 60%; margin-left: auto; margin-right: auto; }
+}
+.video-links { font-size: 0.9rem; margin-top: 0.2rem; }
+
 .photo-single { max-width: 30rem; margin: 1.25rem 0 0.5rem; }
 .photo-portrait { max-width: 19rem; }
 figcaption a { color: var(--accent-emerald); }
