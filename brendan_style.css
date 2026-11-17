@@ -1192,6 +1192,19 @@ figcaption a { color: var(--accent-emerald); }
 .work-section + .landing {
     padding-top: 0;
 }
+/* Homepage contact strip, first thing under the nav: a centered pill sized to its items. */
+.contact-strip.contact-strip-top {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 3rem;
+}
+@media (max-width: 700px) {
+    /* Stacked on phones: span the column so it lines up with the work cards. */
+    .contact-strip.contact-strip-top {
+        width: auto;
+        margin-bottom: 2.5rem;
+    }
+}
 @media (max-width: 768px) {
     .work-section {
         padding-top: var(--space-section);
